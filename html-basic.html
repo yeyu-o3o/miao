@@ -35,7 +35,137 @@
     }
     </code>
   </pre>
-  <div class="footer"></div>
+  <hr>
+  <ul>
+    <li>小学
+      <ol>
+        <li>一年级
+          <ol>
+            <li>上学期</li>
+            <li>下学期</li>
+          </ol>
+        </li>
+        <li>二年级</li>
+        <li>三年级</li>
+      </ol>
+    </li>
+    <li>中学</li>
+    <li>大学</li>
+  </ul>
+  <hr>
+  <h2>Google搜索</h2>
+  <form action="https://www.baidu.com/s" target="_blank">
+    <input type="text" name="wd">
+    <button>在新窗口打开搜索结果</button>
+  </form>
+  <hr>
+  <p>个人信息调查表</p>
+  <form action="">
+    <dl>
+      <dt>性别</dt>
+      <dd>
+        <input type="radio" name="gender" value="female">男
+        <input type="radio" name="gender" value="male">女
+      </dd>
+      <dt>年龄</dt>
+      <dd>
+        <select id="">
+          <option value="" selected hidden>请选择</option>
+          <optgroup label="少年">
+            <option value="">1到6岁</option>
+            <option value="">6到12岁</option>
+          </optgroup>
+          <optgroup label="青年">
+            <option value="">13到15岁</option>
+            <option value="">16到18岁</option>
+          </optgroup>
+          <optgroup label="少年">
+            <option value="">1到6岁</option>
+            <option value="">6到12岁</option>
+          </optgroup>
+        </select>
+      </dd>
+      <dt>生日</dt>
+      <dd>
+        <input type="date">
+      </dd>
+      <dt>生辰</dt>
+      <dd>
+        <input type="time">
+      </dd>
+      <dt>照片</dt>
+      <dd>
+        <label>
+          <input type="file" accept="image/*" hidden>
+          点我上传照片，我比文件上传按钮好看
+        </label>
+      </dd>
+      <dt>
+        自我介绍
+      </dt>
+      <dd>
+        <textarea name="intro" id="" cols="30" rows="10" placeholder="点击填写"></textarea>
+      </dd>
+    </dl>
+    <fieldset disabled >
+      <legend>这里全部禁用了</legend>
+      <input type="text">
+      <input type="text">
+      <input type="text">
+      <input type="text">
+    </fieldset>
+    <input type="submit">
+    <input type="reset">
+  </form>
+  <hr>
+  <table border="1">
+    <colgroup><col><col bgcolor="red"></colgroup>
+    <thead></thead>
+    <tbody>
+      <tr>
+        <th>编号</th>
+        <th>品名</th>
+        <th>进价</th>
+        <th>出价</th>
+      </tr>
+      <tr>
+        <td>aaa</td>
+        <td>a</td>
+        <td rowspan="2">a</td>
+        <td>a</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+        <td>a</td>
+      </tr>
+    </tbody>
+    <tfoot></tfoot>
+  </table>
+  <hr>
+  <img src="images/stock-photo-174778125.jpg" alt="" usemap="#aa11" height="565" width="375">
+  <map name="aa11">
+    <area shape="rect" coords="0,0,50,50" href="https:/www.baidu.com/" target="_blank" alt="">
+    <area shape="circle" coords="100,100,100" href="https:/www.baidu.com/" target="_blank" alt="">
+  </map>
+  <hr>
+  <a href="https://p5js.org/" target="aa22">js</a><br>
+  <iframeset>
+    <iframe src="https://nodejs.org/en" frameborder="10" name="aa22">您的浏览器不支持frame</iframe>
+  </iframeset>
+  <div id="footer"></div>
 </body>
 
 </html>
