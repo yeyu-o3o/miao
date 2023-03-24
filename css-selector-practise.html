@@ -53,7 +53,9 @@
      .b li:nth-child(n+35):nth-child(-n+50){
       color:blue;
      }
-     .prime li:nth-child(n)
+     .prime li:not(:first-child):not(:nth-child(2n+4)):not(:nth-child(3n+9)):not(:nth-child(5n+25)):not(:nth-child(7n+49)){
+      color: red;
+     }
     </style>
   </head>
   <body>
