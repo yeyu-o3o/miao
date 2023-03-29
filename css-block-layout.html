@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .banner {
+      background-color: #000;
+    }
+
+    .a {
+      color: white;
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    .body {
+      width: 600px;
+      margin: 0 auto;
+    }
+
+    .b {
+      margin: 1em auto;
+    }
+
+    .c div {
+      width: 174px;
+      height: 34px;
+      background-color: pink;
+      border: 3px black solid;
+      margin: 15px 0;
+    }
+
+    .c div:hover {
+      background-color: red;
+    }
+
+    .c div:nth-child(n+5) {
+      margin-left: 210px;
+    }
+
+    .c div:nth-child(n+9) {
+      margin-left: 420px;
+    }
+
+    .c div:nth-child(4n+5) {
+      margin-top: -220px;
+    }
+
+    ul {
+      list-style: none;
+      margin: 10px 0;
+    }
+
+    li {
+      border-bottom: 1px dotted;
+      padding-bottom: 1px;
+    }
+
+    li:last-child {
+      border: none;
+    }
+
+    .footer {
+      background-color: #EE8AEE;
+      text-align: center;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="banner">
+    <div class="a">hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world
+      请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果hello world 请调整浏览器窗口大小查看效果</div>
+  </div>
+  <div class="body">
+    <div class="b">页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体
+      宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px 页面主体 宽度600px
+      页面主体 宽度600px 页面主体 宽度600px
+    </div>
+    <div class="c">
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <ul>
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+      <li>link</li>
+    </ul>
+  </div>
+  <div class="footer">
+    ©版权所有<br>
+    本页所有布局均使用块元素
+  </div>
+</body>
+
+</html>
