@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    input {
+      visibility: visible;
+      height: 125px;
+      width: 220px;
+      opacity: 0
+    }
+
+    .box:has(input:checked) {
+      background-color: #30F54D;
+      height: 130px;
+      width: 220px;
+      border-color: #30F54D;
+    }
+
+    .box {
+      background-color: #fff;
+      margin: 30px;
+      position: relative;
+      border: 3px solid #CBCBCB;
+      border-radius: 64px;
+      height: 130px;
+      width: 220px;
+      transition: 1s;
+    }
+
+    .ball1 {
+      position: absolute;
+      top: 6px;
+      left: 7px;
+      box-shadow: 1px 1px 10px grey;
+      background-color: #fff;
+      height: 112px;
+      width: 112px;
+      border-radius: 56px;
+      transition: 1.2s;
+    }
+
+    .ball2 {
+      top: 6px;
+      left: 7px;
+      box-shadow: 1px 1px 10px grey;
+      position: absolute;
+      background-color: #fff;
+      height: 112px;
+      width: 112px;
+      top: 0;
+      left: 0;
+      border-radius: 56px;
+      overflow: hidden;
+      transition: 1s;
+    }
+
+    .ball1:has(input:checked) {
+      left: 95px;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="ball1">
+      <input type="checkbox" name="" id="">
+    </div>
+  </div>
+</body>
+
+</html>

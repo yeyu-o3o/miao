@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .pic {
+      position: relative;
+      height: 200px;
+      width: 200px;
+      border: 1px solid;
+      overflow: hidden;
+
+    }
+
+    img {
+      position: absolute;
+      left: 0;
+      height: 200px;
+
+    }
+
+    img:hover {
+      left: -5600px;
+      transition: 1s steps(28);
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="pic">
+    <img src="images/爱心.png" alt="">
+  </div>
+</body>
+
+</html>
