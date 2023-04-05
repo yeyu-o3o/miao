@@ -6,35 +6,36 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
-  <style>
+  <style type="text/less">
     .pic {
-      position: relative;
-      height: 200px;
-      width: 200px;
-      border: 1px solid;
+      height: 100px;
+      width: 100px;
       overflow: hidden;
-
+      input {
+        &:checked + label {
+          background-position: -2800px;
+          transition:1s steps(28);
+        }
+      }
+      label {
+        display: block;
+        cursor: pointer;
+        height: 100px;
+        width: 100px;
+        background-image: url(images/爱心.png);
+      }
     }
 
-    img {
-      position: absolute;
-      left: 0;
-      height: 200px;
-
-    }
-
-    img:hover {
-      left: -5600px;
-      transition: 1s steps(28);
-    }
 
   </style>
 </head>
 
 <body>
   <div class="pic">
-    <img src="images/爱心.png" alt="">
+    <input type="checkbox" id="aa" hidden>
+    <label for="aa"></label>
   </div>
 </body>
+<script src="less.js"></script>
 
 </html>
