@@ -9,7 +9,7 @@
   <style type="text/less">
     * {
       margin: 0;
-      box-shadow: inset 0 0 1px red;
+      /* box-shadow: inset 0 0 1px red; */
       box-sizing: border-box;
     }
 
@@ -19,55 +19,11 @@
       position: relative;
     }
 
-    /* label点击变色 */
-    :has(input:checked:nth-child(1)) + .dot label:nth-child(1) {
-      background-color: #fff8;
+    .btn {
+      input {
+        display: none;
+      }
     }
-    :has(input:checked:nth-child(2)) + .dot label:nth-child(2) {
-      background-color: #fff8;
-    }
-    :has(input:checked:nth-child(3)) + .dot label:nth-child(3) {
-      background-color: #fff8;
-    }
-    :has(input:checked:nth-child(4)) + .dot label:nth-child(4) {
-      background-color: #fff8;
-    }
-
-
-    /* label鼠标悬浮变色 */
-    :has(input:hover:nth-child(1)) + .dot label:nth-child(1) {
-      background-color: #fff8;
-    }
-    :has(input:hover:nth-child(2)) + .dot label:nth-child(2) {
-      background-color: #fff8;
-    }
-    :has(input:hover:nth-child(3)) + .dot label:nth-child(3) {
-      background-color: #fff8;
-    }
-    :has(input:hover:nth-child(4)) + .dot label:nth-child(4) {
-      background-color: #fff8;
-    }
-
-
-    /* 图片透明度改变 */
-    :has(input:checked:nth-child(1)) ~ .pic img:nth-child(1) {
-      opacity: 1;
-      transition: 2s;
-    }
-    :has(input:checked:nth-child(2)) ~ .pic img:nth-child(2) {
-      opacity: 1;
-      transition: 2s;
-    }
-    :has(input:checked:nth-child(3)) ~ .pic img:nth-child(3) {
-      opacity: 1;
-      transition: 2s;
-    }
-    :has(input:checked:nth-child(4)) ~ .pic img:nth-child(4) {
-      opacity: 1;
-      transition: 2s;
-    }
-
-
 
     .dot {
       position: absolute;
@@ -83,6 +39,10 @@
         margin:0 5px;
         border:2px solid #8EA1B4;
         background-color: #5C7793;
+        &:hover{
+          background-color: #fff8;
+
+        }
       }
     }
 
@@ -95,18 +55,138 @@
         transition: 2s;
       }
     }
-  </style>
+
+      .arrowLeft {
+        position: absolute;
+        left: 300px;
+        top: calc(50% - 43px);
+        width: 52px;
+        height: 86px;
+        z-index: 999;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+        .left {
+          display: none;
+          cursor: pointer;
+          height: 100%;
+          width: 100%;
+          &::before {
+            content: '<';
+            font-size: 30px;
+            line-height: 86px;
+            color: #d8d8d8;
+            padding-left: 14px;
+          }
+        }
+      }
+
+
+      .arrowRight {
+        position: absolute;
+        cursor: pointer;
+        right: 0;
+        top: calc(50% - 43px);
+        width: 52px;
+        height: 86px;
+        z-index: 999;
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.4);
+        }
+        .right {
+          display: none;
+          cursor: pointer;
+          height: 100%;
+          width: 100%;
+          &::before {
+            content: '>';
+            font-size: 30px;
+            line-height: 86px;
+            color: #d8d8d8;
+            padding-left: 14px;
+          }
+        }
+      }
+
+    /* label点击变色 */
+    :has([id^='d']:checked:nth-child(1)) ~ .dot label:nth-child(1),
+    :has([id^='d']:checked:nth-child(2)) ~ .dot label:nth-child(2),
+    :has([id^='d']:checked:nth-child(3)) ~ .dot label:nth-child(3),
+    :has([id^='d']:checked:nth-child(4)) ~ .dot label:nth-child(4) {
+      background-color: #fff8;
+    }
+
+    /* 图片透明度改变 */
+    :has([id^='d']:checked:nth-child(1)) ~ .pic img:nth-child(1),
+    :has([id^='d']:checked:nth-child(2)) ~ .pic img:nth-child(2),
+    :has([id^='d']:checked:nth-child(3)) ~ .pic img:nth-child(3),
+    :has([id^='d']:checked:nth-child(4)) ~ .pic img:nth-child(4) {
+      opacity: 1;
+      transition: 2s;
+    }
+
+    /* 箭头随点击出现 */
+    :has([id^='d']:checked:nth-child(1)) ~ .arrow :is(label.left,label.right):nth-child(1),
+    :has([id^='d']:checked:nth-child(2)) ~ .arrow :is(label.left,label.right):nth-child(2),
+    :has([id^='d']:checked:nth-child(3)) ~ .arrow :is(label.left,label.right):nth-child(3),
+    :has([id^='d']:checked:nth-child(4)) ~ .arrow :is(label.left,label.right):nth-child(4) {
+      display: block;
+    }
+
+    /* 箭头控制图片切换 */
+    :has([id^='arrowl']:checked:nth-child(1)) ~ .pic img:last-child,
+    :has([id^='arrowl']:checked:nth-child(2)) ~ .pic img:nth-child(1),
+    :has([id^='arrowl']:checked:nth-child(3)) ~ .pic img:nth-child(2),
+    :has([id^='arrowl']:checked:nth-child(4)) ~ .pic img:nth-child(3),
+
+    :has([id^='arrowr']:checked:nth-child(1)) ~ .pic img:nth-child(2),
+    :has([id^='arrowr']:checked:nth-child(2)) ~ .pic img:nth-child(3),
+    :has([id^='arrowr']:checked:nth-child(3)) ~ .pic img:nth-child(4),
+    :has([id^='arrowr']:checked:nth-child(4)) ~ .pic img:first-child {
+      opacity: 1;
+      transition: 2s;
+
+    }
+
+    </style>
 </head>
 
 <body>
   <div class="radio-slider">
     <div class="btn">
-      <input type="radio" id="d1" name="banner" checked hidden>
-      <input type="radio" id="d2" name="banner" hidden>
-      <input type="radio" id="d3" name="banner" hidden>
-      <input type="radio" id="d4" name="banner" hidden>
+      <input type="radio" id="d1" name="banner" checked>
+      <input type="radio" id="d2" name="banner">
+      <input type="radio" id="d3" name="banner">
+      <input type="radio" id="d4" name="banner">
 
     </div>
+
+    <div class="arrow">
+      <input type="radio" id="arrowl1" name="banner" hidden>
+      <input type="radio" id="arrowl2" name="banner" hidden>
+      <input type="radio" id="arrowl3" name="banner" hidden>
+      <input type="radio" id="arrowl4" name="banner" hidden>
+
+      <input type="radio" id="arrowr1" name="banner" hidden>
+      <input type="radio" id="arrowr2" name="banner" hidden>
+      <input type="radio" id="arrowr3" name="banner" hidden>
+      <input type="radio" id="arrowr4" name="banner" hidden>
+
+      <div class="arrowLeft">
+        <label for="arrowl1" class="left"></label>
+        <label for="arrowl2" class="left"></label>
+        <label for="arrowl3" class="left"></label>
+        <label for="arrowl4" class="left"></label>
+      </div>
+
+      <div class="arrowRight">
+        <label for="arrowr1" class="right"></label>
+        <label for="arrowr2" class="right"></label>
+        <label for="arrowr3" class="right"></label>
+        <label for="arrowr4" class="right"></label>
+      </div>
+    </div>
+
     <div class="dot">
       <label for="d1"></label>
       <label for="d2"></label>
@@ -114,6 +194,7 @@
       <label for="d4"></label>
 
     </div>
+
     <div class="pic">
       <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0d03df40a5e8ef760731a8f4f3f61172.jpg?w=2452&h=920" alt="">
       <img
