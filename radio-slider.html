@@ -7,16 +7,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
   <style type="text/less">
+
     * {
       margin: 0;
       /* box-shadow: inset 0 0 1px red; */
+      /* background-color: rgba( 0, 0, 0, .08); */
       box-sizing: border-box;
     }
 
     .radio-slider {
-      width: 1534px;
-      height: 576px;
+      width: 1200px;
+      height: 460px;
       position: relative;
+      cursor: pointer;
     }
 
     .btn {
@@ -25,10 +28,48 @@
       }
     }
 
+    .arrow {
+       label {
+        position: absolute;
+        left: 234px;
+        top: 195px;
+        z-index: 999;
+        display: none;
+        width: 40px;
+        height: 70px;
+        cursor: pointer;
+
+        &:hover {
+          background-color: rgba( 0, 0, 0, .5);
+
+        }
+
+        &:nth-child(even) {
+          left: 1160px;
+        }
+
+        &:nth-child(even)::after {
+          content: '>';
+          display: block;
+          font-size: 50px;
+          text-align: center;
+          color: #EDEDED;
+
+        }
+        &:nth-child(odd)::after {
+          content: '<';
+          display: block;
+          font-size: 50px;
+          text-align: center;
+          color: #EDEDED;
+        }
+       }
+    }
+
     .dot {
       position: absolute;
-      right: 43px;
-      bottom: 32px;
+      right: 35px;
+      bottom: 30px;
       z-index: 999;
       label {
         display: inline-block;
@@ -56,57 +97,6 @@
       }
     }
 
-      .arrowLeft {
-        position: absolute;
-        left: 300px;
-        top: calc(50% - 43px);
-        width: 52px;
-        height: 86px;
-        z-index: 999;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-        .left {
-          display: none;
-          cursor: pointer;
-          height: 100%;
-          width: 100%;
-          &::before {
-            content: '<';
-            font-size: 30px;
-            line-height: 86px;
-            color: #d8d8d8;
-            padding-left: 14px;
-          }
-        }
-      }
-
-
-      .arrowRight {
-        position: absolute;
-        cursor: pointer;
-        right: 0;
-        top: calc(50% - 43px);
-        width: 52px;
-        height: 86px;
-        z-index: 999;
-        &:hover {
-          background-color: rgba(0, 0, 0, 0.4);
-        }
-        .right {
-          display: none;
-          cursor: pointer;
-          height: 100%;
-          width: 100%;
-          &::before {
-            content: '>';
-            font-size: 30px;
-            line-height: 86px;
-            color: #d8d8d8;
-            padding-left: 14px;
-          }
-        }
-      }
 
     /* label点击变色 */
     :has([id^='d']:checked:nth-child(1)) ~ .dot label:nth-child(1),
@@ -125,27 +115,16 @@
       transition: 2s;
     }
 
-    /* 箭头随点击出现 */
-    :has([id^='d']:checked:nth-child(1)) ~ .arrow :is(label.left,label.right):nth-child(1),
-    :has([id^='d']:checked:nth-child(2)) ~ .arrow :is(label.left,label.right):nth-child(2),
-    :has([id^='d']:checked:nth-child(3)) ~ .arrow :is(label.left,label.right):nth-child(3),
-    :has([id^='d']:checked:nth-child(4)) ~ .arrow :is(label.left,label.right):nth-child(4) {
+    /* 每个arrow出现在自己的那一张图里 */
+    :has([id^='d']:checked:nth-child(1)) > .arrow label:nth-child(1),
+    :has([id^='d']:checked:nth-child(1)) > .arrow label:nth-child(2),
+    :has([id^='d']:checked:nth-child(2)) > .arrow label:nth-child(3),
+    :has([id^='d']:checked:nth-child(2)) > .arrow label:nth-child(4),
+    :has([id^='d']:checked:nth-child(3)) > .arrow label:nth-child(5),
+    :has([id^='d']:checked:nth-child(3)) > .arrow label:nth-child(6),
+    :has([id^='d']:checked:nth-child(4)) > .arrow label:nth-child(7),
+    :has([id^='d']:checked:nth-child(4)) > .arrow label:nth-child(8),{
       display: block;
-    }
-
-    /* 箭头控制图片切换 */
-    :has([id^='arrowl']:checked:nth-child(1)) ~ .pic img:last-child,
-    :has([id^='arrowl']:checked:nth-child(2)) ~ .pic img:nth-child(1),
-    :has([id^='arrowl']:checked:nth-child(3)) ~ .pic img:nth-child(2),
-    :has([id^='arrowl']:checked:nth-child(4)) ~ .pic img:nth-child(3),
-
-    :has([id^='arrowr']:checked:nth-child(1)) ~ .pic img:nth-child(2),
-    :has([id^='arrowr']:checked:nth-child(2)) ~ .pic img:nth-child(3),
-    :has([id^='arrowr']:checked:nth-child(3)) ~ .pic img:nth-child(4),
-    :has([id^='arrowr']:checked:nth-child(4)) ~ .pic img:first-child {
-      opacity: 1;
-      transition: 2s;
-
     }
 
     </style>
@@ -162,29 +141,18 @@
     </div>
 
     <div class="arrow">
-      <input type="radio" id="arrowl1" name="banner" hidden>
-      <input type="radio" id="arrowl2" name="banner" hidden>
-      <input type="radio" id="arrowl3" name="banner" hidden>
-      <input type="radio" id="arrowl4" name="banner" hidden>
+      <label for="d4"></label>
+      <label for="d2"></label>
 
-      <input type="radio" id="arrowr1" name="banner" hidden>
-      <input type="radio" id="arrowr2" name="banner" hidden>
-      <input type="radio" id="arrowr3" name="banner" hidden>
-      <input type="radio" id="arrowr4" name="banner" hidden>
+      <label for="d1"></label>
+      <label for="d3"></label>
 
-      <div class="arrowLeft">
-        <label for="arrowl1" class="left"></label>
-        <label for="arrowl2" class="left"></label>
-        <label for="arrowl3" class="left"></label>
-        <label for="arrowl4" class="left"></label>
-      </div>
+      <label for="d2"></label>
+      <label for="d4"></label>
 
-      <div class="arrowRight">
-        <label for="arrowr1" class="right"></label>
-        <label for="arrowr2" class="right"></label>
-        <label for="arrowr3" class="right"></label>
-        <label for="arrowr4" class="right"></label>
-      </div>
+      <label for="d3"></label>
+      <label for="d1"></label>
+
     </div>
 
     <div class="dot">
