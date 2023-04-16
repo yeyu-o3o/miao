@@ -11,53 +11,652 @@
     * {
       margin: 0;
       box-sizing: border-box;
-      background-color: rgba(0, 0, 0, .08);
-      box-shadow: inset 0 0 1px red;
+      /* box-shadow: inset 0 0 1px red; */
+      /* background-color: rgba(0, 0, 0, .08); */
     }
+
+    body,html {
+      background-color: #fff;
+      font-size: 14px;
+    }
+
+    @font-face {
+    font-family: "iconfont";
+    src: url("iconfont.eot"); /* IE9 */
+    src: url("iconfont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+    url("iconfont.woff2") format("woff2"), /* chrome、firefox、opera、Safari, Android, iOS */
+    url("iconfont.woff") format("woff"), /* chrome、firefox */
+    url("iconfont.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+    url("iconfont.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
+}
 
     a {
       text-decoration: none;
+      color: #b0b0b0;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
     }
 
     .header {
-      height: 40px;
-      background-color: #333333;
+      height: 140px;
 
-      .header-con {
-        width: 1200px;
-        height: 100%;
+      /* 最上面的黑边 */
+      .topbar {
+        background-color: #333333;
+        width: 100%;
+        height: 40px;
+
+        .container {
+          color: #b0b0b0;
+          width: 1226px;
+          height: 100%;
+          margin: 0 auto;
+          font-size: 12px;
+
+          ul {
+            padding: 0;
+            li {
+              display: inline-block;
+            }
+          }
+
+          .server {
+          float: left;
+
+            li {
+              line-height: 40px;
+
+              &::after {
+                content: '丨';
+                color: #3B4040;
+                padding: 0px;
+              }
+              &:last-child::after {
+                content: '';
+              }
+            }
+        }
+
+          .shoppingCar {
+            cursor: pointer;
+            position: relative;
+            width: 120px;
+            height: 40px;
+            line-height: 40px;
+            float: right;
+            text-align: center;
+            background-color: #424242;
+            color: #b0b0b0;
+
+            &::before {
+                content: '\e60c';
+                font-size: 22px;
+                vertical-align: -5px;
+                font-family: 'iconfont';
+              }
+
+            .shoppingCar-con {
+              box-shadow: 0 8px 10px rgba(0,0,0,.15);
+              position: absolute;
+              left: -195px;
+              display: none;
+              width: 315px;
+              height: 100px;
+              background-color: #fff;
+              line-height: 100px;
+            }
+
+            &:hover .shoppingCar-con {
+              display: block;
+            }
+          }
+
+          .login {
+            float: right;
+            line-height: 40px;
+            margin-right: 20px;
+
+            li {
+              line-height: 40px;
+
+              &::after {
+                content: '丨';
+                color: #3B4040;
+                padding: 0px;
+              }
+              &:last-child::after {
+                content: '';
+              }
+            }
+          }
+        }
+      }
+
+      /* 头部导航栏 */
+      .site-header {
+        width: 100%;
+        background-color: #fff;
+        height: 100px;
+        color: #333333;
+
+        .container {
+          height: 100px;
+          width: 1226px;
+          margin: 0 auto;
+          background-color: #fff;
+
+          .header-logo {
+            float: left;
+            height: 56px;
+            width: 56px;
+            margin-top: 22px;
+            cursor: pointer;
+
+            &::after {
+              content: '';
+              display: block;
+              height: 56px;
+              width: 56px;
+              background-size: contain;
+              background-image: url(https://cdn.cnbj1.fds.api.mi-img.com/mi.com-assets/shop/img/logo-mi2.png);
+            }
+          }
+
+          .header-nav {
+            float: left;
+            margin-left: 178px;
+            height: 100px;
+
+            ul {
+              line-height: 100px;
+              padding: 0;
+
+              li{
+                display: inline-block;
+                cursor: pointer;
+
+
+                &:hover {
+                  color: #FF6700;
+                }
+
+                + li {
+                  padding-left: 22px;
+                }
+              }
+            }
+          }
+
+          .header-search {
+            float: right;
+            width: 296px;
+            height: 50px;
+            font-size: 0;
+            margin-top: 25px;
+
+            input {
+              font-size: 12px;
+              width: 245px;
+              height: 50px;
+              vertical-align: top;
+              border: 1px solid #E0E0E0;
+
+            }
+
+            button {
+              width: 52px;
+              height: 50px;
+              margin-left: -1px;
+              background-color: #fff;
+              border: 1px solid #E0E0E0;
+              border-left: none;
+              cursor: pointer;
+
+              &:hover {
+                background-color: #FF6700;
+                transition: 0.2s;
+              }
+
+              &:hover::after {
+                color: #fff;
+                transition: 0.2s;
+              }
+
+              &::after {
+                content:'\e616';
+                font-size: 24px;
+                color: #616161;
+                font-family: 'iconfont';
+              }
+            }
+          }
+        }
+      }
+
+
+    }
+
+    /* 轮播图板块 */
+    .site-slider {
+
+      .container {
+        overflow: hidden;
+        position: relative;
+        width: 1226px;
         margin: 0 auto;
-        ul {
-          padding: 0;
-          li {
+
+        /* 轮播图 */
+        .radio-slider {
+
+          width: 1226px;
+          height: 460px;
+          position: relative;
+          cursor: pointer;
+        }
+
+        .btn {
+
+          input {
+            display: none;
+          }
+        }
+
+        .arrow {
+
+           label {
+            position: absolute;
+            left: 234px;
+            top: 195px;
+            z-index: 999;
+            display: none;
+            width: 40px;
+            height: 70px;
+            cursor: pointer;
+
+            &:hover {
+              background-color: rgba( 0, 0, 0, .5);
+            }
+
+            &:nth-child(even) {
+              left: 1186px;
+            }
+
+            &:nth-child(even)::after {
+              content: '\e622';
+              font-family: 'iconfont';
+              display: block;
+              font-size: 35px;
+              line-height: 70px;
+              text-align: center;
+              color: #EDEDED;
+            }
+
+            &:nth-child(odd)::after {
+              content: '\e627';
+              font-family: 'iconfont';
+              display: block;
+              font-size: 35px;
+              line-height: 70px;
+              text-align: center;
+              color: #EDEDED;
+            }
+          }
+        }
+
+        .dot {
+          position: absolute;
+          right: 35px;
+          bottom: 30px;
+          z-index: 999;
+
+          label {
             display: inline-block;
+            cursor: pointer;
+            border-radius: 6px;
+            width: 11px;
+            height: 12px;
+            margin:0 5px;
+            border:2px solid #8EA1B4;
+            background-color: #5C7793;
+
+            &:hover{
+              background-color: #fff8;
+            }
+          }
+        }
+
+        .pic {
+
+          img {
+            height: 100%;
+            width: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: 2s;
+          }
+        }
+
+
+        /* label点击变色 */
+        :has([id^='d']:checked:nth-child(1)) ~ .dot  label:nth-child(1),
+        :has([id^='d']:checked:nth-child(2)) ~ .dot  label:nth-child(2),
+        :has([id^='d']:checked:nth-child(3)) ~ .dot  label:nth-child(3),
+        :has([id^='d']:checked:nth-child(4)) ~ .dot  label:nth-child(4) {
+          background-color: #fff;
+        }
+
+        /* 图片透明度改变 */
+        :has([id^='d']:checked:nth-child(1)) ~ .pic  img:nth-child(1),
+        :has([id^='d']:checked:nth-child(2)) ~ .pic  img:nth-child(2),
+        :has([id^='d']:checked:nth-child(3)) ~ .pic  img:nth-child(3),
+        :has([id^='d']:checked:nth-child(4)) ~ .pic  img:nth-child(4) {
+          opacity: 1;
+          transition: 2s;
+        }
+
+        /* 每个arrow出现在自己的那一张图里 */
+        :has([id^='d']:checked:nth-child(1)) > .arrow  label:nth-child(1),
+        :has([id^='d']:checked:nth-child(1)) > .arrow  label:nth-child(2),
+        :has([id^='d']:checked:nth-child(2)) > .arrow  label:nth-child(3),
+        :has([id^='d']:checked:nth-child(2)) > .arrow  label:nth-child(4),
+        :has([id^='d']:checked:nth-child(3)) > .arrow  label:nth-child(5),
+        :has([id^='d']:checked:nth-child(3)) > .arrow  label:nth-child(6),
+        :has([id^='d']:checked:nth-child(4)) > .arrow  label:nth-child(7),
+        :has([id^='d']:checked:nth-child(4)) > .arrow  label:nth-child(8),{
+          display: block;
+        }
+
+        /* 轮播图左边的侧栏 */
+        .site-sidebar {
+          z-index: 999;
+          position: absolute;
+          top: 0;
+          height: 460px;
+          width: 234px;
+
+          > ul {
+            padding: 30px 0;
+            background: rgba(105,101,101,.6);
+
+              > li {
+              height: 40px;
+              padding-left: 30px;
+              line-height: 40px;
+              color: #fff;
+              cursor: pointer;
+
+              &:hover {
+                background-color: #FF6700;
+
+                > .sidebar-con {
+                  display: block;
+                }
+              }
+
+              &::after {
+                content: '\E623';
+                float: right;
+                padding-right: 24px;
+                font-family: 'iconfont';
+              }
+
+              .sidebar-con {
+                display: none;
+                position: absolute;
+                left: 234px;
+                top: 0;
+                height: 460px;
+                background-color: #fff;
+                color: #333333;
+                box-shadow: 0 8px 16px rgba(0,0,0,.18);
+
+                 > ul {
+                  display: grid;
+                  height: 460px;
+                  grid-template-rows: repeat(6 , 76px);
+                  grid-auto-columns: 265px;
+                  grid-auto-flow: column;
+                  align-content: space-between;
+
+
+                   > li {
+
+                    a {
+                      display: block;
+                      width: 265px;
+                      height: 76px;
+                      line-height: 76px;
+
+                      img {
+                        position: relative;
+                        top: 13px;
+                        padding-left: 30px;
+                      }
+                    }
+
+
+                  }
+                }
+              }
+            }
+          }
+        }
+
+        /* 轮播图左下角服务模块 */
+        .site-server {
+          float: left;
+          display: flex;
+          margin-top: 14px;
+          width: 234px;
+          height: 170px;
+          background-color: #5F5750;
+          flex-wrap: wrap;
+
+          .server-icon {
+            width: 77px;
+            height: 84px;
+            color: #b0b0b0;
+            text-align: center;
 
             a {
-            color: #b0b0b0;
+              display: block;
+              margin-left: 10px;
+              margin-top: 15px;
+
+              img {
+                margin-top: 20px;
+                display: block;
+                height: 22px;
+                width: 22px;
+                position: relative;
+                left: 22px;
+                top: -5px;
+
+              }
+
+              &:hover {
+                color: #fff;
+              }
             }
+
           }
         }
 
-        .server {
-          font-size: 12px;
-          li {
-            line-height: 40px;
-            &::after {
-              content: '丨';
-              color: #3B4040;
-              padding: 0px;
+        /* 轮播图下面的广告 */
+        .site-ad {
+          float: left;
+          display: flex;
+          width: 978px;
+          justify-content: space-between;
+          margin: 14px;
+          margin-right: 0;
+          margin-bottom: 26px;
+          background-color: #fff;
+          transition: .2s linear;
+
+
+          .ad-box {
+            width: 316px;
+            height: 170px;
+            transition: .2s linear;
+
+
+            img {
+              width: 100%;
+              height: 100%;
             }
-            &:last-child::after {
-              content: '';
+
+            &:hover {
+              box-shadow: 0 15px 30px rgba(0,0,0,.15);
+              translate: 0 -2px;
+              transition: .2s linear;
             }
           }
-        }
-
-        .login {
-
         }
       }
     }
+
+    /* 主要内容 */
+    .main {
+      background-color: #f5f5f5;
+      overflow: hidden;
+
+      /* 主要内容版心 */
+      .main-con {
+        width: 1226px;
+        margin: 0 auto;
+
+        /* 主要内容上面的banner */
+      .main-banner {
+          font-size: 0;
+          height: 120px;
+          width: 1226px;
+          margin: 26px 0;
+
+          a {
+            display: block;
+            height: 100%;
+          }
+      }
+
+
+      /* 手机盒子 */
+      .brick-box {
+
+        /* 手机盒子的标题 */
+        .brick-box-title {
+          position: relative;
+          height: 58px;
+          line-height: 58px;
+
+          h2 {
+            font-weight: normal;
+            color: #515151;
+            font-size: 22px;
+          }
+
+          .brick-box-more {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 16px;
+
+            &::after {
+              content: '\e623';
+              font-family: 'iconfont';
+              padding: 2px;
+              position: relative;
+              top: 1px;
+              color: #fff;
+              background: #B0B0B0;
+              border-radius: 999px;
+            }
+          }
+
+        }
+
+        /* 手机盒子 */
+        .brick-box-con {
+          height: 614px;
+          width: 100%;
+
+          ul {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-flow: column wrap;
+            justify-content: space-between;
+            align-content: space-between;
+
+            li {
+              background-color: #fff;
+              transition: .2s linear;
+
+
+              &:hover {
+                box-shadow: 0 15px 30px rgba(0,0,0,.1);
+                transform: translate3d(0,-2px,0);
+                transition: .2s linear;
+              }
+
+              &:first-child {
+                width: 234px;
+                height: 100%;
+
+                img {
+                  width: 234px;
+                  height: 614px;
+                }
+              }
+
+                + li{
+                display: block;
+                width: 234px;
+                height: 300px;
+
+                a {
+                  display: block;
+                  width: 100%;
+                  height: 100%;
+                  background-color: #fff;
+
+                  img {
+                    display: block;
+                    width: 160px;
+                    margin: 0 auto 30px;
+                    padding-top: 12px;
+                  }
+
+                  p {
+                    text-align: center;
+                    font-size: 14px;
+                    line-height: 2em;
+
+                    &:nth-child(2) {
+                      color: #000;
+                      font-size: 14px;
+                    }
+
+                    &:nth-child(3) {
+                      font-size: 10px;
+                    }
+
+                    &:nth-child(4) {
+                      color: #FF6700;
+                      line-height: 3em;
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 
 
   </style>
@@ -68,35 +667,876 @@
   <div class="wrap">
 
     <div class="header">
-      <!-- 头部版心 -->
-      <div class="header-con">
-        <div class="server">
+      <div class="topbar">
+        <div class="container">
+          <div class="server">
+            <ul>
+              <li><a href="">小米官网</a></li>
+              <li><a href="https://www.mi.com/shop" target="_blank">小米商城</a></li>
+              <li><a href="">MIUI</a></li>
+              <li><a href="">loT</a></li>
+              <li><a href="">云服务</a></li>
+              <li><a href="">天星数科</a></li>
+              <li><a href="">有品</a></li>
+              <li><a href="">小爱开放平台</a></li>
+              <li><a href="">企业团购</a></li>
+              <li><a href="">资质证照</a></li>
+              <li><a href="">协议规则</a></li>
+              <li><a href="">下载app</a></li>
+              <li><a href="">Select Location</a></li>
+            </ul>
+          </div>
+          <div class="shoppingCar">
+            购物车(0)
+            <div class="shoppingCar-con">
+              购物车中还没有商品，赶紧选购吧！
+            </div>
+
+          </div>
+          <div class="login">
+            <ul>
+              <li><a href="">登录</a></li>
+              <li><a href="">注册</a></li>
+              <li><a href="">消息通知</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="site-header">
+        <div class="container">
+          <div class="header-logo"></div>
+          <div class="header-nav">
+            <ul>
+              <li>Xiaomi手机</li>
+              <li>Redmi手机</li>
+              <li>电视</li>
+              <li>笔记本</li>
+              <li>平板</li>
+              <li>家电</li>
+              <li>路由器</li>
+              <li>服务中心</li>
+              <li>社区</li>
+            </ul>
+          </div>
+          <div class="header-search">
+            <div class="search-con">
+              <input type="text">
+              <button></button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="site-slider">
+      <div class="container">
+
+        <!-- 轮播图 -->
+        <div class="radio-slider">
+          <div class="btn">
+            <input type="radio" id="d1" name="banner" checked>
+            <input type="radio" id="d2" name="banner">
+            <input type="radio" id="d3" name="banner">
+            <input type="radio" id="d4" name="banner">
+
+          </div>
+
+          <div class="arrow">
+            <label for="d4"></label>
+            <label for="d2"></label>
+
+            <label for="d1"></label>
+            <label for="d3"></label>
+
+            <label for="d2"></label>
+            <label for="d4"></label>
+
+            <label for="d3"></label>
+            <label for="d1"></label>
+
+          </div>
+
+          <div class="dot">
+            <label for="d1"></label>
+            <label for="d2"></label>
+            <label for="d3"></label>
+            <label for="d4"></label>
+
+          </div>
+
+          <div class="pic">
+            <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0d03df40a5e8ef760731a8f4f3f61172.jpg?w=2452&h=920"
+              alt="">
+            <img
+              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6494adc68900269b551de5ba96bd10a9.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+              alt="">
+            <img
+              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7c21d01bbe93eafc7d07d3796a3c59c.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+              alt="">
+            <img
+              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/08a9d7eec7b055bac247b5068f817b1d.jpg?thumb=1&w=1533&h=575&f=webp&q=90"
+              alt="">
+          </div>
+        </div>
+
+        <!-- 轮播图左边的侧栏 -->
+        <div class="site-sidebar">
           <ul>
-            <li><a href="">小米官网</a></li>
-            <li><a href="">小米商城</a></li>
-            <li><a href="">MIUI</a></li>
-            <li><a href="">loT</a></li>
-            <li><a href="">云服务</a></li>
-            <li><a href="">天星数科</a></li>
-            <li><a href="">有品</a></li>
-            <li><a href="">小爱开放平台</a></li>
-            <li><a href="">企业团购</a></li>
-            <li><a href="">资质证照</a></li>
-            <li><a href="">协议规则</a></li>
-            <li><a href="">下载app</a></li>
-            <li><a href="">Select Location</a></li>
+            <li>手机
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi MIX系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/827fae95d0f1d75f1535ef93e357b2af.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi 数字系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/930ddc941c1e6c81042406440e88ac45.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi Civi系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0453934fca43f79d0472b28e382bd2be.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi 青春系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/993aff4f7f59dd64011c61a3132f0fd4.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi K系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ab5c6d195d2b3dde69683966891d5a9.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi Note系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/232c1ede1284125cc4dcee5c7565d8fe.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi 数字系列
+                    </a></li>
+                </ul>
+              </div>
+            </li>
+            <li>电视
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>家电
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/ecfbf9d01c8a2605f0a6938093b23ad8.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi MIX系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/827fae95d0f1d75f1535ef93e357b2af.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi 数字系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/930ddc941c1e6c81042406440e88ac45.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi Civi系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0453934fca43f79d0472b28e382bd2be.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Xiaomi 青春系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/993aff4f7f59dd64011c61a3132f0fd4.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi K系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9ab5c6d195d2b3dde69683966891d5a9.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi Note系列
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/232c1ede1284125cc4dcee5c7565d8fe.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">Redmi 数字系列
+                    </a></li>
+                </ul>
+              </div>
+            </li>
+            <li>笔记本 平板
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>出行 穿戴
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>耳机 音箱
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>健康 儿童
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>生活 箱包
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>智能路由器
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
+            <li>电源 配件
+              <div class="sidebar-con">
+                <ul>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+                  <li><a href="">
+                      <img
+                        src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/b656495821144d92bd932d91eedcf659.png?thumb=1&w=40&h=40&f=webp&q=90"
+                        alt="">
+                      Redmi X65
+                    </a></li>
+
+                </ul>
+              </div>
+            </li>
           </ul>
         </div>
-        <div class="login">
-          <ul>
-            <li>登录</li>
-            <li>注册</li>
-            <li>消息通知</li>
-          </ul>
+
+        <!-- 轮播图坐下的服务板块 -->
+        <div class="site-server">
+          <div class="server-icon"><a href="">
+              <img src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/82abdba456e8caaea5848a0cddce03db.png?w=48&h=48"
+                alt=""> 保障服务</a></div>
+          <div class="server-icon"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/806f2dfb2d27978e33fe3815d3851fa3.png?w=48&h=48"
+                alt=""> 企业团购</a></div>
+          <div class="server-icon"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/eded6fa3b897a058163e2485532c4f10.png?w=48&h=48"
+                alt=""> F码通道</a></div>
+          <div class="server-icon"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/43a3195efa6a3cc7662efed8e7abe8bf.png?w=48&h=48"
+                alt=""> 米粉卡</a></div>
+          <div class="server-icon"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f4846bca6010a0deb9f85464409862af.png?w=48&h=48"
+                alt=""> 以旧换新</a></div>
+          <div class="server-icon"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/9a76d7636b08e0988efb4fc384ae497b.png?w=48&h=48"
+                alt=""> 话费充值</a></div>
+
+        </div>
+
+        <!-- 轮播下面的广告 -->
+        <div class="site-ad">
+          <div class="ad-box"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/0cf5e958bc88727b50c5c5fba7a8f47a.jpg?w=632&h=340"
+                alt=""></a>
+          </div>
+          <div class="ad-box"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/6dd2f3e0de4e6cbba98fd3799cfa5bf7.jpg?w=632&h=340"
+                alt=""></a>
+          </div>
+          <div class="ad-box"><a href=""><img
+                src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d7d4be1a9e701e16de498f89b1865867.jpg?w=632&h=340"
+                alt=""></a>
+            </adiv>
+
+          </div>
         </div>
       </div>
     </div>
-  </div>
+
+    <div class="main">
+      <div class="main-con">
+
+        <!-- 最上面的banner -->
+        <div class="main-banner">
+          <a href="">
+            <img
+              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8034ed2ad4b10f7f117ac2529b06cfca.jpg?thumb=1&w=1226&h=120&f=webp&q=90"
+              alt="">
+          </a>
+        </div>
+
+        <!-- 手机板块 -->
+        <div class="brick-box">
+          <div class="brick-box-title">
+            <h2>手机</h2>
+            <div class="brick-box-more">
+              查看更多
+            </div>
+          </div>
+          <div class="brick-box-con">
+            <ul>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/d91bb6cf7da0947e8a6e50e03f4daf06.jpg?thumb=1&w=234&h=614&f=webp&q=90"
+                    alt="">
+                </a>
+              </li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/8b046feca0a7bb3f7b961a9690babb1b.jpg?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202211292351_92aba2c69123166a74ba2e2b525b1ae2.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/a6cec580260ceb20ae6a885c2c65c611.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/aa047170a22d9f0852254aa36df5f5f0.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/f37dd30477e7ba040c7fb69c31ad8bf3.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/94c6497b70f2e881460cb232082a0da6.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202212251443_29b17941a7365948446bd193011d9241.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+              <li><a href=""><img
+                    src="https://cdn.cnbj1.fds.api.mi-img.com/nr-pub/202210262033_ef39fca0e37395d07682124770fd3ad9.png?thumb=1&w=200&h=200&f=webp&q=90"
+                    alt="">
+                  <p>Redmi Note 12 Turbo</p>
+                  <p>狂暴引擎 超强性能释放</p>
+                  <p>1999元起</p>
+                </a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 </body>
 <script src="../less.js"></script>
 
