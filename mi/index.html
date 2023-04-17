@@ -21,14 +21,14 @@
     }
 
     @font-face {
-    font-family: "iconfont";
-    src: url("iconfont.eot"); /* IE9 */
-    src: url("iconfont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
-    url("iconfont.woff2") format("woff2"), /* chrome、firefox、opera、Safari, Android, iOS */
-    url("iconfont.woff") format("woff"), /* chrome、firefox */
-    url("iconfont.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
-    url("iconfont.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
-}
+      font-family: "iconfont";
+      src: url("iconfont.eot"); /* IE9 */
+      src: url("iconfont.eot?#iefix") format("embedded-opentype"), /* IE6-IE8 */
+      url("iconfont.woff2") format("woff2"), /* chrome、firefox、opera、Safari, Android, iOS */
+      url("iconfont.woff") format("woff"), /* chrome、firefox */
+      url("iconfont.ttf") format("truetype"), /* chrome、firefox、opera、Safari, Android, iOS 4.2+ */
+      url("iconfont.svg#uxfonteditor") format("svg"); /* iOS 4.1- */
+    }
 
     a {
       text-decoration: none;
@@ -40,6 +40,7 @@
       padding: 0;
     }
 
+    /* 顶部 */
     .header {
       height: 140px;
 
@@ -141,6 +142,7 @@
         background-color: #fff;
         height: 100px;
         color: #333333;
+        position: relative;
 
         .container {
           height: 100px;
@@ -178,13 +180,66 @@
                 display: inline-block;
                 cursor: pointer;
 
-
                 &:hover {
                   color: #FF6700;
                 }
 
+                &:hover .nav-box {
+
+                  height: 230px;
+                  transition: height .4s .1s;
+
+                }
+
                 + li {
                   padding-left: 22px;
+                }
+
+                .nav-box {
+                  border-top: 1px solid #e0e0e0;
+                  height: 0;
+                  overflow: hidden;
+                  position: absolute;
+                  z-index: 9999;
+                  width: 100%;
+                  left: 0;
+                  background-color: #fff;
+                  transition: height .4s .1s;
+                  box-shadow:  0 15px 30px #0001;
+
+                  ul {
+                    margin-left: calc(50% - 1226px / 2);
+                    height: 229px;
+                    display: flex;
+                    width: 1226px;
+                    justify-content: space-between;
+
+                    li {
+                      margin-top: 30px;
+                      display: inline-block;
+                      text-align: center;
+                      font-size: 12px;
+                      line-height: 1.5;
+
+                      img {
+                        width: 200px;
+                        border-right: 1px solid #E0E0E0;
+                      }
+
+                      &:last-child img {
+                        border: none;
+                      }
+
+                      p {
+                        color: #333;
+                        padding: 5px 0;
+                      }
+
+                      p:nth-child(3) {
+                        color: #ff6700;
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -198,6 +253,7 @@
             margin-top: 25px;
 
             input {
+              outline: none;
               font-size: 12px;
               width: 245px;
               height: 50px;
@@ -212,7 +268,6 @@
               margin-left: -1px;
               background-color: #fff;
               border: 1px solid #E0E0E0;
-              border-left: none;
               cursor: pointer;
 
               &:hover {
@@ -530,7 +585,7 @@
         margin: 0 auto;
 
         /* 主要内容上面的banner */
-      .main-banner {
+        .main-banner {
           font-size: 0;
           height: 120px;
           width: 1226px;
@@ -540,11 +595,11 @@
             display: block;
             height: 100%;
           }
-      }
+        }
 
 
-      /* 手机盒子 */
-      .brick-box {
+        /* 手机盒子 */
+        .brick-box {
 
         /* 手机盒子的标题 */
         .brick-box-title {
@@ -654,10 +709,146 @@
             }
           }
         }
+        }
+
+        /* 最下面的banner */
+        .main-banner-end {
+          margin: 30px 0;
+        }
       }
     }
-  }
 
+    /* 底部 */
+    .site-footer {
+
+      background-color: #fff;
+      .site-footer-con{
+        width: 1226px;
+        margin: 0 auto;
+
+
+        .footer-service {
+          width: 100%;
+          height: 80px;
+
+          ul {
+            padding: 27px 0;
+            border-bottom: 1px solid #e0e0e0;
+
+            li {
+              display: inline-block;
+              width: 19.7%;
+
+
+               + li {
+                border-left: 1px solid #e0e0e0;
+              }
+
+               a {
+                padding-left: 58px;
+                font-size: 16px;
+                color: #616161;
+
+              }
+            }
+
+            li:nth-child(1) a::before {
+              content: '\e634';
+              font-family: 'iconfont';
+              font-size: 24px;
+              vertical-align: -4px;
+
+            }
+            li:nth-child(2) a::before {
+              content: '\e635';
+              font-family: 'iconfont';
+              font-size: 24px;
+              vertical-align: -4px;
+
+            }
+            li:nth-child(3) a::before {
+              content: '\e636';
+              font-family: 'iconfont';
+              font-size: 24px;
+              vertical-align: -4px;
+
+            }
+            li:nth-child(4) a::before {
+              content: '\e638';
+              font-family: 'iconfont';
+              font-size: 24px;
+              vertical-align: -4px;
+
+            }
+            li:nth-child(5) a::before {
+              content: '\e637';
+              font-family: 'iconfont';
+              font-size: 24px;
+              vertical-align: -4px;
+
+            }
+          }
+        }
+
+        .footer-box {
+          height: 394px;
+          display: flex;
+
+          .footer-link {
+            display: flex;
+            width: 974px;
+            font-size: 16px;
+            padding-left: 150px;
+            margin-top: 40px;
+
+
+            ul {
+              color: #757575;
+              font-size: 14px;
+              position: relative;
+              top: 3em;
+              left: -73px;
+              padding-left: 10px;
+
+              li {
+                margin-top: 10px;
+                font-size: 12px;
+              }
+            }
+
+          }
+
+          .footer-tel {
+            height: 120px;
+            width: 252px;
+            text-align: center;
+            line-height: 40px;
+            border-left: 1px solid #b0b0b0;
+            margin-top: 40px;
+
+
+            p:nth-child(1) {
+              color: #FF6700;
+              font-size: 22px;
+            }
+
+            .rengong {
+              border: 1px solid #ff6700;
+              line-height: 30px;
+              display: inline-block;
+              padding: 0 30px;
+              color: #FF6700;
+
+
+              &::before {
+                content: '\e600';
+                font-family: 'iconfont';
+              }
+            }
+          }
+        }
+      }
+    }
 
   </style>
 </head>
@@ -707,13 +898,315 @@
           <div class="header-logo"></div>
           <div class="header-nav">
             <ul>
-              <li>Xiaomi手机</li>
-              <li>Redmi手机</li>
-              <li>电视</li>
-              <li>笔记本</li>
-              <li>平板</li>
-              <li>家电</li>
-              <li>路由器</li>
+              <li>
+                Xiaomi手机
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>Redmi手机
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>电视
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>笔记本
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>平板
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>家电
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
+              <li>路由器
+                <div class="nav-box">
+                  <ul>
+                    <li>
+                      <a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a>
+                    </li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                    <li><a href=""><img
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          alt="">
+                        <p>Xiaomi 13</p>
+                        <p>3999元起</p>
+                      </a></li>
+                  </ul>
+                </div>
+              </li>
               <li>服务中心</li>
               <li>社区</li>
             </ul>
@@ -1533,9 +2026,88 @@
             </ul>
           </div>
         </div>
+
+        <!-- 最下面的banner -->
+        <div class="main-banner-end">
+          <a href="">
+            <img
+              src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/88e35cffc82cd98cd53172460067af17.jpg?thumb=1&w=1226&h=120&f=webp&q=90"
+              alt="">
+          </a>
+        </div>
       </div>
     </div>
 
+    <div class="site-footer">
+      <div class="site-footer-con">
+        <div class="footer-service">
+          <ul>
+            <li><a href="">预约维修服务</a></li>
+            <li><a href="">7天无理由退货</a></li>
+            <li><a href="">15天免费换货</a></li>
+            <li><a href="">满69包邮</a></li>
+            <li><a href="">1100余家售后网点</a></li>
+          </ul>
+        </div>
+        <div class="footer-box">
+          <div class="footer-link">
+            <p>选购指南</p>
+            <ul>
+              <li><a href="">手机</a></li>
+              <li><a href="">电视</a></li>
+              <li><a href="">笔记本</a></li>
+              <li><a href="">平板</a></li>
+              <li><a href="">穿戴</a></li>
+              <li><a href="">耳机</a></li>
+              <li><a href="">家电</a></li>
+              <li><a href="">路由器</a></li>
+              <li><a href="">音箱</a></li>
+              <li><a href="">配件</a></li>
+            </ul>
+            <p>服务中心</p>
+            <ul>
+              <li><a href="">申请售后</a></li>
+              <li><a href="">售后政策</a></li>
+              <li><a href="">维修服务价格</a></li>
+              <li><a href="">订单查询</a></li>
+              <li><a href="">以旧换新</a></li>
+              <li><a href="">保障服务</a></li>
+              <li><a href="">防伪查询</a></li>
+              <li><a href="">F码通道</a></li>
+            </ul>
+            <p>线下门店</p>
+            <ul>
+              <li><a href="">小米之家</a></li>
+              <li><a href="">服务网点</a></li>
+              <li><a href="">授权体验店/专区</a></li>
+            </ul>
+            <p>关于小米</p>
+            <ul>
+              <li><a href="">了解小米</a></li>
+              <li><a href="">加入小米</a></li>
+              <li><a href="">投资者关系</a></li>
+              <li><a href="">环境、社会及管治</a></li>
+              <li><a href="">廉洁举报</a></li>
+            </ul>
+            <p>关注我们</p>
+            <ul>
+              <li><a href="">新浪微博</a></li>
+              <li><a href="">官方微信</a></li>
+              <li><a href="">联系我们</a></li>
+              <li><a href="">公益基金会</a></li>
+            </ul>
+
+          </div>
+          <div class="footer-tel">
+            <p>400-100-5678</p>
+            <p>8:00-18:00(仅收市话费)</p>
+            <div class="rengong">人工客服</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
 
 </body>
 <script src="../less.js"></script>
