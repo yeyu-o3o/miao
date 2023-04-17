@@ -18,6 +18,7 @@
     body,html {
       background-color: #fff;
       font-size: 14px;
+      min-width: 1226px;
     }
 
     @font-face {
@@ -176,6 +177,11 @@
               line-height: 100px;
               padding: 0;
 
+              &:hover .nav-box {
+                  height: 230px;
+                  transition: height .4s .1s;
+                }
+
               li{
                 display: inline-block;
                 cursor: pointer;
@@ -185,9 +191,10 @@
                 }
 
                 &:hover .nav-box {
-
+                  z-index: 10000;
                   height: 230px;
                   transition: height .4s .1s;
+                  box-shadow: 0 1px 4px rgba(0,0,0,.18);
 
                 }
 
@@ -196,7 +203,7 @@
                 }
 
                 .nav-box {
-                  border-top: 1px solid #e0e0e0;
+                  box-sizing: border-box;
                   height: 0;
                   overflow: hidden;
                   position: absolute;
@@ -205,7 +212,7 @@
                   left: 0;
                   background-color: #fff;
                   transition: height .4s .1s;
-                  box-shadow:  0 15px 30px #0001;
+
 
                   ul {
                     margin-left: calc(50% - 1226px / 2);
@@ -948,7 +955,7 @@
                   <ul>
                     <li>
                       <a href=""><img
-                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c758eb7e0dce4307c62c47155519bc80.png?thumb=1&w=160&h=110&f=webp&q=90"
+                          src="https://cdn.cnbj1.fds.api.mi-img.com/mi-mall/c98a369cd511f4bab30e6f4d73438f5d.png?thumb=1&w=160&h=110&f=webp&q=90"
                           alt="">
                         <p>Xiaomi 13</p>
                         <p>3999元起</p>
