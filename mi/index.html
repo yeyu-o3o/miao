@@ -16,6 +16,7 @@
     }
 
     body,html {
+      position: relative;
       background-color: #fff;
       font-size: 14px;
       min-width: 1226px;
@@ -66,10 +67,14 @@
           }
 
           .server {
-          float: left;
+            float: left;
 
             li {
               line-height: 40px;
+
+              &:hover a{
+                color: #fff;
+              }
 
               &::after {
                 content: '丨';
@@ -80,7 +85,7 @@
                 content: '';
               }
             }
-        }
+          }
 
           .shoppingCar {
             cursor: pointer;
@@ -104,15 +109,26 @@
               box-shadow: 0 8px 10px rgba(0,0,0,.15);
               position: absolute;
               left: -195px;
-              display: none;
+              height: 0;
               width: 315px;
-              height: 100px;
               background-color: #fff;
               line-height: 100px;
+              z-index: 1;
+              transition: .3s .1s;
+              overflow: hidden;
+              color: #606060;
+              z-index: 3;
+            }
+
+            &:hover {
+              background-color: #fff;
+              color: #ff6700;
+              transition: 0 .1s;
             }
 
             &:hover .shoppingCar-con {
-              display: block;
+              height: 100px;
+              transition: .3s .1s;
             }
           }
 
@@ -123,6 +139,10 @@
 
             li {
               line-height: 40px;
+
+              &:hover a {
+                color: #fff;
+              }
 
               &::after {
                 content: '丨';
@@ -157,6 +177,10 @@
             width: 56px;
             margin-top: 22px;
             cursor: pointer;
+
+            &:active {
+              transform: scale(0.9);
+            }
 
             &::after {
               content: '';
@@ -253,6 +277,7 @@
           }
 
           .header-search {
+            position: relative;
             float: right;
             width: 296px;
             height: 50px;
@@ -260,6 +285,7 @@
             margin-top: 25px;
 
             input {
+              text-indent: 1em;
               outline: none;
               font-size: 12px;
               width: 245px;
@@ -267,6 +293,34 @@
               vertical-align: top;
               border: 1px solid #E0E0E0;
 
+              &:focus {
+                border: 1px solid #FF6700;
+
+                + .search-box {
+                  display: block;
+                }
+
+                ~ button {
+                  border: 1px solid #FF6700;
+                }
+              }
+            }
+
+            .search-box {
+              display: none;
+              background-color: #fff;
+              border: 1px solid #ff6700;
+              border-top: none;
+              position: absolute;
+              width: 245px;
+              height: 250px;
+              z-index: 2;
+              font-size: 14px;
+
+              p {
+                font-size: 12px;
+                padding: 10px;
+              }
             }
 
             button {
@@ -609,113 +663,113 @@
         .brick-box {
 
         /* 手机盒子的标题 */
-        .brick-box-title {
-          position: relative;
-          height: 58px;
-          line-height: 58px;
+          .brick-box-title {
+            position: relative;
+            height: 58px;
+            line-height: 58px;
 
-          h2 {
-            font-weight: normal;
-            color: #515151;
-            font-size: 22px;
-          }
-
-          .brick-box-more {
-            position: absolute;
-            right: 0;
-            top: 0;
-            font-size: 16px;
-
-            &::after {
-              content: '\e623';
-              font-family: 'iconfont';
-              padding: 2px;
-              position: relative;
-              top: 1px;
-              color: #fff;
-              background: #B0B0B0;
-              border-radius: 999px;
+            h2 {
+              font-weight: normal;
+              color: #515151;
+              font-size: 22px;
             }
+
+            .brick-box-more {
+              position: absolute;
+              right: 0;
+              top: 0;
+              font-size: 16px;
+
+              &::after {
+                content: '\e623';
+                font-family: 'iconfont';
+                padding: 2px;
+                position: relative;
+                top: 1px;
+                color: #fff;
+                background: #B0B0B0;
+                border-radius: 999px;
+              }
+            }
+
           }
 
-        }
-
-        /* 手机盒子 */
-        .brick-box-con {
-          height: 614px;
-          width: 100%;
-
-          ul {
+          /* 手机盒子 */
+          .brick-box-con {
+            height: 614px;
             width: 100%;
-            height: 100%;
-            display: flex;
-            flex-flow: column wrap;
-            justify-content: space-between;
-            align-content: space-between;
 
-            li {
-              background-color: #fff;
-              transition: .2s linear;
+            ul {
+              width: 100%;
+              height: 100%;
+              display: flex;
+              flex-flow: column wrap;
+              justify-content: space-between;
+              align-content: space-between;
 
-
-              &:hover {
-                box-shadow: 0 15px 30px rgba(0,0,0,.1);
-                transform: translate3d(0,-2px,0);
+              li {
+                background-color: #fff;
                 transition: .2s linear;
-              }
 
-              &:first-child {
-                width: 234px;
-                height: 100%;
 
-                img {
-                  width: 234px;
-                  height: 614px;
+                &:hover {
+                  box-shadow: 0 15px 30px rgba(0,0,0,.1);
+                  transform: translate3d(0,-2px,0);
+                  transition: .2s linear;
                 }
-              }
 
-                + li{
-                display: block;
-                width: 234px;
-                height: 300px;
-
-                a {
-                  display: block;
-                  width: 100%;
+                &:first-child {
+                  width: 234px;
                   height: 100%;
-                  background-color: #fff;
 
                   img {
-                    display: block;
-                    width: 160px;
-                    margin: 0 auto 30px;
-                    padding-top: 12px;
+                    width: 234px;
+                    height: 614px;
                   }
+                }
 
-                  p {
-                    text-align: center;
-                    font-size: 14px;
-                    line-height: 2em;
+                  + li{
+                  display: block;
+                  width: 234px;
+                  height: 300px;
 
-                    &:nth-child(2) {
-                      color: #000;
+                  a {
+                    display: block;
+                    width: 100%;
+                    height: 100%;
+                    background-color: #fff;
+
+                    img {
+                      display: block;
+                      width: 160px;
+                      margin: 0 auto 30px;
+                      padding-top: 12px;
+                    }
+
+                    p {
+                      text-align: center;
                       font-size: 14px;
-                    }
+                      line-height: 2em;
 
-                    &:nth-child(3) {
-                      font-size: 10px;
-                    }
+                      &:nth-child(2) {
+                        color: #000;
+                        font-size: 14px;
+                      }
 
-                    &:nth-child(4) {
-                      color: #FF6700;
-                      line-height: 3em;
+                      &:nth-child(3) {
+                        font-size: 10px;
+                      }
+
+                      &:nth-child(4) {
+                        color: #FF6700;
+                        line-height: 3em;
+                      }
                     }
                   }
                 }
               }
             }
           }
-        }
         }
 
         /* 最下面的banner */
@@ -857,6 +911,38 @@
       }
     }
 
+    /* 固定的侧栏 */
+    .tool-bar {
+      width: 84px;
+      height: 456px;
+      position: fixed;
+      right: 0;
+      bottom: 74px;
+
+      .tool-bar-con {
+
+        ul {
+          text-align: center;
+
+          li {
+            width: 84px;
+            height: 92px;
+            border: 1px solid #F5F5F5;
+            padding-top: 30px;
+            background-color: #fff;
+
+
+
+            &::before {
+              content: '\e90a';
+              font-family: 'iconfont';
+              font-size: 28px;
+            }
+          }
+        }
+      }
+    }
+
   </style>
 </head>
 
@@ -889,7 +975,6 @@
             <div class="shoppingCar-con">
               购物车中还没有商品，赶紧选购吧！
             </div>
-
           </div>
           <div class="login">
             <ul>
@@ -1220,7 +1305,15 @@
           </div>
           <div class="header-search">
             <div class="search-con">
-              <input type="text">
+              <input type="text" placeholder="充电宝">
+              <div class="search-box">
+                <p>全部商品</p>
+                <p>全部商品</p>
+                <p>全部商品</p>
+                <p>全部商品</p>
+                <p>全部商品</p>
+                <p>全部商品</p>
+              </div>
               <button></button>
             </div>
           </div>
@@ -2111,6 +2204,28 @@
             <div class="rengong">人工客服</div>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="tool-bar">
+      <div class="tool-bar-con">
+        <ul>
+          <li><a href="">
+              <p>手机APP</p>
+            </a></li>
+          <li><a href="">
+              <p>个人中心</p>
+            </a></li>
+          <li><a href="">
+              <p>售后服务</p>
+            </a></li>
+          <li><a href="">
+              <p>人工客服</p>
+            </a></li>
+          <li><a href="">
+              <p>购物车</p>
+            </a></li>
+        </ul>
       </div>
     </div>
 
