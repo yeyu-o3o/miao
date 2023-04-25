@@ -17,7 +17,7 @@
   var a = +prompt()
   var b = +prompt()
   var c = +prompt()
-  var d = (a + b) / c
+  var d = Math.trunc((a + b) / c)
   console.log(d)
 </script>
 
@@ -82,7 +82,7 @@
 <script id="ch0103/11">
   var a = +prompt()
   var b = +prompt()
-  var c = a % b
+  var c = (a % b).toFixed(4)
   console.log(c);
 </script>
 
