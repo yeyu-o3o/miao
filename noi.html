@@ -161,3 +161,202 @@
   var a = 2 ** n
   console.log(a);
 </script>
+
+<script id="ch0104/01">
+  var n = +prompt()
+  var a = n > 0 ? 'positive' : (n == 0 ? 'zero' : 'negetive')
+  console.log(a);
+</script>
+
+<script id="ch0104/02">
+  var a = +prompt()
+  var b = (Math.abs(a)).toFixed(2)
+  console.log(b);
+</script>
+
+<script id="ch0104/03">
+  var n = +prompt()
+  var a = (n % 2 == 0 ? 'even' : 'odd')
+  console.log(a);
+</script>
+
+<script id="ch0104/04">
+  var a = prompt()
+  var b = a.charCodeAt(0)
+  var c = b % 2 == 0 ? 'NO' : 'YES'
+  console.log(c);
+</script>
+
+<script id="ch0104/05">
+  var a = +prompt()
+  var b = +prompt()
+  var c = a > b ? '>' : (a == b ? '=' : '<')
+  console.log(c);
+</script>
+
+<script id="ch0104/06">
+  var a = +prompt()
+  var b = (a >= 10 && a <= 99 ? 1 : 0)
+  console.log(b);
+</script>
+
+<script id="ch0104/07">
+  var a = +prompt()
+  var b = +prompt()
+  var c = (a > 10 || b > 20 ? 1 : 0)
+  console.log(c);
+</script>
+
+<script id="ch0104/08">
+  var a = +prompt()
+  var b = a % 3 == 0 && a % 5 == 0 ? 'YES' : 'NO'
+  console.log(b);
+</script>
+
+<script id="ch0104/09">
+  var a = +prompt()
+  if (a % 3 == 0 && a % 5 == 0 && a % 7 == 0) {
+    console.log(3);
+    console.log(5);
+    console.log(7);
+  } else if (a % 3 == 0 && a % 5 == 0) {
+    console.log(3);
+    console.log(5);
+  } else if (a % 5 == 0 && a % 7 == 0) {
+    console.log(5);
+    console.log(7);
+  } else if (a % 3 == 0 && a % 7 == 0) {
+    console.log(3);
+    console.log(7);
+  } else if (a % 3 == 0)
+    console.log(3);
+  else if (a % 5 == 0)
+    console.log(5);
+  else if (a % 7 == 0)
+    console.log(7);
+  else console.log('n');
+</script>
+
+<script id="ch0104/10">
+  var a = +prompt()
+  var b = +prompt()
+  var c = a < 60 && b >= 60 || a >= 60 && b < 60 ? 1 : 0
+  console.log(c);
+
+</script>
+
+<script id="ch0104/11">
+  var a = +prompt()
+  var b = a == 1 || a == 3 || a == 5 ? 'NO' : 'YES1'
+  console.log(b);
+</script>
+
+<script id="ch0104/12">
+  var a = +prompt()
+  var b = a / 3 + 50
+  var c = a / 1.2
+  var d = b < c ? 'Bike' : (b = c ? 'All' : 'Walk')
+  console.log(d);
+</script>
+
+<script id="ch0104/13">
+  var n = +prompt()
+  if (n >= 0 && n < 5)
+    var y = -n + 2.5
+  else if (n >= 5 && n < 10)
+    var y = 2 - 1.5 * (n - 3) * (n - 3)
+  else if (n >= 10 && n < 20)
+    var y = n / 2 - 1.5
+  console.log(y.toFixed(3));
+</script>
+
+<script id="ch0104/14">
+  var a = +prompt()
+  var b = prompt()
+  if (a < 1000)
+    var c = 8
+  else
+    var c = Math.ceil((a - 1000) / 500) * 4 + 8
+  if (b == 'y')
+    c = c + 5
+  console.log(c);
+</script>
+
+<script id="ch0104/15">
+  var a = +prompt()
+  var b = +prompt()
+  var c = +prompt()
+  var d = a >= b && a >= c ? a : (b >= c ? b : c)
+  console.log(d);
+</script>
+
+<script id="ch0104/16">
+  var a = +prompt()
+  var b = +prompt()
+  var c = +prompt()
+  var d = a + b > c && a + c > b && b + c > a ? 'yes' : 'no'
+  console.log(d);
+</script>
+
+<script id="ch0104/17">
+  var x = +prompt()
+  var y = ((x % 4 == 0 && x % 100 != 0) || x % 400 == 0) ? 'Y' : 'N'
+  console.log(y);
+</script>
+
+<script id="ch0104/18">
+  var x = +prompt()
+  var y = +prompt()
+  var a = x >= 0 && x <= 1 && y >= 0 && y <= 1 ? 'yes' : 'no'
+  console.log(a);
+</script>
+
+<script id="ch0104/19">
+  var a = +prompt()
+  var b = +prompt()
+  var c = prompt()
+  if (c == '+')
+    console.log(a + b);
+  else if (c == '-')
+    console.log(a - b);
+  else if (c == '*')
+    console.log(a * b);
+  else if (c == '/' && b == 0)
+    console.log('Divided by zero!')
+  else if (c == '/' && b != 0)
+    console.log(a / b);
+  else
+    console.log('Invalid operator!')
+</script>
+
+<script id="ch0104/20">
+  var a = +prompt()
+  var b = +prompt()
+  var c = +prompt()
+  var delta = b * b - 4 * a * c
+  if (delta > 0) {
+    var x1 = (-b + Math.sqrt(delta)) / (2 * a)
+    var x2 = (-b - Math.sqrt(delta)) / (2 * a)
+    console.log(x1.toFixed(5));
+    console.log(x2.toFixed(5));
+  } else if (delta == 0) {
+    var x1 = -b / (2 * a)
+    var x2 = x1
+    console.log(x1.toFixed(5));
+    console.log(x2.toFixed(5));
+  } else if (delta < 0) {
+    var x1 = -b / (2 * a)
+    var x2 = -b / (2 * a)
+    var xx = Math.sqrt(-delta) / (2 * a)
+    console.log(x1.toFixed(5) + '+' + xx.toFixed(5) + 'i');
+    console.log(x2.toFixed(5) + '-' + xx.toFixed(5) + 'i');
+  }
+</script>
+
+<script id="ch0104/21">
+  var n = +prompt()
+  var x = +prompt()
+  var y = +prompt()
+  var a = n - Math.ceil(y / x)
+  console.log(a);
+</script>
