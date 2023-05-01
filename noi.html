@@ -1105,7 +1105,22 @@
 
 </script>
 
-<script id="ch0105/44">
+<script id="itob">
+  var n = +prompt()
+  var a = n % 10
+  var x = ''
+  var s = 1
+  for (var j = 1; j < 10; j++) {
+    if (n % (10 ** j) != n)
+      s++
+  }
+  if (n >= 10) {
+    for (var i = s - 1; i > 0; i--) {//注意此处，是倒着写的，注意s的范围不能为0
+      x += (n % (10 ** (i + 1)) - n % (10 ** i)) / (10 ** i)
+    }
+  }
+  x += a
+  console.log(x)
 
 </script>
 
