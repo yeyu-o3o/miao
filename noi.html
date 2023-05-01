@@ -707,7 +707,7 @@
     var y2 = (n % 81 - n % 9) / 9
     var y3 = (n % 729 - n % 81) / 81
     if (x1 == y3 && x2 == y2 & x3 == y1) {
-      console.log(n, '' + x1 + x2 + x3, '' + y1 + y2 + y3);
+      console.log(n, '' + y1 + y2 + y3, '' + x1 + x2 + x3);
     }
   }
 
@@ -819,7 +819,7 @@
   for (var i = 1; i <= n; i++) {
     s += ((-1) ** (i - 1)) / i
   }
-  console.log(s);
+  console.log(s.toFixed(4));
 
 </script>
 
@@ -1016,15 +1016,15 @@
       console.log(n)
     }
   }
-  for (var n = 1000; n <= 9999; n++) {
-    var a = (n % 10) ** 4
-    var b = ((n % 100 - n % 10) / 10) ** 4
-    var c = ((n % 1000 - n % 100) / 100) ** 4
-    var d = ((n % 10000 - n % 1000) / 1000) ** 4
-    if (n == a + b + c + d) {
-      console.log(n)
-    }
-  }
+  // for (var n = 1000; n <= 9999; n++) {
+  //   var a = (n % 10) ** 4
+  //   var b = ((n % 100 - n % 10) / 10) ** 4
+  //   var c = ((n % 1000 - n % 100) / 100) ** 4
+  //   var d = ((n % 10000 - n % 1000) / 1000) ** 4
+  //   if (n == a + b + c + d) {
+  //     console.log(n)
+  //   }
+  // }
 </script>
 
 <script id="palindrom">
@@ -1084,15 +1084,15 @@
 
 <script id="prime">
   var n = +prompt()
-  var flag = 0
+  var flag = 1
   for (var i = 2; i < n; i++) {
     if (n % i == 0) {//有其他因数
-      flag = 1
+      flag = 0
     }
   }
-  if (flag == 0)
+  if (flag == 1)
     console.log('YES')
-  else if (flag == 1)
+  else if (flag == 0)
     console.log('NO')
 </script>
 
