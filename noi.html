@@ -619,8 +619,7 @@
     total += height * 2
     height = height / 2
   }
-  console.log(total, height);
-
+  console.log(total.toFixed(4), height.toFixed(7));
 
 </script>
 
@@ -795,7 +794,17 @@
 </script>
 
 <script id="ch0105/31">
-
+  var n = +prompt()
+  var m = +prompt()
+  for (var i = 1; i <= n; i++) { //每一盏灯
+    var flag = true//因为灯是开着的，放第一层循环之外，则会导致灯的初始状况有可能是false
+    for (var j = 1; j <= m; j++) {//每一个人
+      if (i % j == 0)
+        flag = !flag
+    }
+    if (flag == false)
+      console.log(i)
+  }
 
 </script>
 
@@ -839,12 +848,10 @@
 
 <script id="ch0105/35">
   var n = +prompt()
-  var e = 0
-  for (var i = 0; i < n; i++) {
-    var a = 1
-    for (var j = 1; j <= i; j++) {
-      a *= j
-    }
+  var e = 1
+  var a = 1
+  for (var j = 1; j <= n; j++) {//每一个1/n！
+    a *= j
     e += 1 / a
   }
   console.log(e.toFixed(10));
@@ -965,11 +972,32 @@
 </script>
 
 <script id="ch0105/43">
-
+  var n = +prompt()
+  for (var i = Math.ceil(Math.sqrt(n)); i < n; i++) {
+    if (n % i == 0)
+      console.log(i)
+  }
 </script>
 
 <script id="ch0105/44">
+  var isprime = function (n) {
+    for (var i = n - 1; i > 1; i--) {
+      if (n % i == 0)
+        return false
+    }
+    return true
+  }
 
+  var n = +prompt()
+  var s = 0
+  for (var i = 2; i < 10000; i++) {
+    if (isprime(i))
+      s++
+    if (s == n) {
+      console.log(i)
+      break
+    }
+  }
 </script>
 
 <script id="ch0105/45">
