@@ -884,11 +884,20 @@
 </script>
 
 <script id="ch0105/38">
-  var n = +prompt()
-  for (var i = n; i >= 0; i--) {
-    var c = +prompt()
-    if (i != 0)
-      console.log(c * i);
+  var x = +prompt()
+  for (var j = 0; j < x; j++) {//x组数据里的每一组
+    var n = +prompt()//多项式的最高次幂
+    if (n == 0) {//最高次幂为0则直接输出0
+      var c = +prompt()//不能省，即使最高次幂为0也要输入常数项
+      console.log(0)
+    }
+    if (n > 0) {
+      for (var i = n; i >= 0; i--) {
+        var c = +prompt()
+        if (i != 0)
+          console.log(c * i);
+      }
+    }
   }
 
 </script>
