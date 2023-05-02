@@ -796,15 +796,23 @@
 <script id="ch0105/31">
   var n = +prompt()
   var m = +prompt()
+  var c = 0//用来记录第一盏灯
+  var result = ''
   for (var i = 1; i <= n; i++) { //每一盏灯
     var flag = true//因为灯是开着的，放第一层循环之外，则会导致灯的初始状况有可能是false
     for (var j = 1; j <= m; j++) {//每一个人
       if (i % j == 0)
         flag = !flag
     }
-    if (flag == false)
-      console.log(i)
+    if (flag == false) {
+      c++//用来记录是第几盏灯关了
+      if (c == 1)
+        result += i
+      else
+        result += ',' + i
+    }
   }
+  console.log(result)
 
 </script>
 
