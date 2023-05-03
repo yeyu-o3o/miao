@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>画图</title>
+  <style>
+    canvas {
+      border: 2px solid #f0f;
+      display: block;
+      margin: auto;
+    }
+
+  </style>
+</head>
+
+<body>
+  <canvas width="500" height="400"></canvas>
+</body>
+<script>
+  var canvas = document.querySelector('canvas')
+  canvas.style.imageRendering = 'pixelated' //放大时的插帧方式：不插帧，直接放大像素
+  var ctx = canvas.getContext('2d')
+
+  function dot(x, y, color = 'black') {
+    x = Math.round(x)
+    y = Math.round(y)
+    ctx.fillStyle = color
+    ctx.fillRect(x, y, 1, 1)
+  }
+  /**
+   * 你的任务：通过调用dot函数，实现：
+   * 需要注意，dot函数不能接收浮点数，如果参数为浮点数，会被转换为整数后绘制
+      * 在 坐标 (42, 42) 画出一个点
+      * 画一条水平实线，粗细为一个像素
+      * 画一条垂直实线，粗细为一个像素
+      * 画一条一个实点一个空点的虚线
+      * 画一条两个实点两个空点的虚线
+      * 画一条三个实点两个空点的虚线
+      * 画一条45度的斜线
+      * 画一条30度的斜线（与x轴的夹角呈30度）
+      * 画一条60度的斜线（与x轴的夹角呈60度）
+      * 画一条跨越画布左上角和右下角的对角线
+      * 画一个空心矩形
+      * 画一个实心矩形
+      * 画两个空心的圆，圆心在画布中心：
+        * 一个半径为50像素
+        * 一个半径为200像素
+      * 画一个实心的圆，半径至少为100像素
+      * 画一个【大小位置都合适】的sin(x)的图像
+
+      * 画出rgb色彩空间的某一面（尺寸要大于100x100）
+      * 如果做出上一题后，尝试将其每个点的坐标乘以一个矩阵（如(2,0,0,2)或(1,0.27得到新的位置，即绘制出被线性变换后的色彩空间某一面
+        可以考虑如下几种矩阵：
+           2 0
+           0 2
+           ------
+           1  0.27
+           0  1
+           ------
+           0.5    0.87
+           -0.87  0.5
+
+   */
+</script>
+<script>
+  // 不可更改上面的代码
+  // 你的代码写在这里
+  dot(42, 42, 'red')
+
+  for (let i = 50; i <= 250; i++) {
+    dot(i, 50)
+  }
+
+  for (let i = 50; i <= 250; i++) {
+    dot(50, i)
+  }
+
+  for (let i = 50; i <= 250; i += 2) {
+    dot(i, 70)
+  }
+
+  for (let i = 50; i <= 250; i += 4) {
+    dot(i, 90)
+    dot(i + 1, 90)
+  }
+
+  for (let i = 50; i <= 250; i += 5) {
+    dot(i, 110)
+    dot(i + 1, 110)
+    dot(i + 2, 110)
+  }
+
+  for (let i = 50; i <= 200; i++) {
+    dot(i, i)
+  }
+
+  for (let x = 50; x <= 200; x++) {
+    let y = 0.5 * x + 25
+    dot(x, y)
+  }
+
+  for (let y = 50; y <= 150; y++) {
+    let x = 0.5 * y + 25
+    dot(x, y)
+  }
+
+
+  for (let x = 0; x <= 500; x++) {
+    let y = 0.8 * x
+    dot(x, y, 'red')
+  }
+
+  for (let x = 300; x <= 400; x++) {
+    for (let y = 100; y <= 200; y++) {
+      dot(x, 100)
+      dot(400, y)
+      dot(x, 200)
+      dot(300, y)
+    }
+  }
+
+  for (let x = 400; x <= 500; x++) {
+    for (let y = 100; y <= 200; y++) {
+      dot(x, y)
+    }
+  }
+
+
+</script>
+
+</html>
