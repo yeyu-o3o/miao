@@ -1187,6 +1187,35 @@
 
 </script>
 
-<script id="ch0105/44">
-
+<script id="lcf&lcm">
+  var n = +prompt()
+  var m = +prompt()
+  var max = -Infinity
+  for (var i = 1; i < n; i++) { //公约数
+    if (n % i == 0) {
+      for (var j = 1; j <= m; j++) {
+        if (m % j == 0) {
+          if (i == j) {
+            if (i > max)
+              max = i
+          }
+        }
+      }
+    }
+  }
+  console.log(max)
+  var min = Infinity
+  for (var i = n; i <= n * m; i++) { //公倍数
+    if (i % n == 0) {
+      for (var j = m; j <= m * n; j++) {
+        if (j % m == 0) {
+          if (i == j) {
+            if (i < min)
+              min = i
+          }
+        }
+      }
+    }
+  }
+  console.log(min)
 </script>
