@@ -1075,24 +1075,32 @@
 <script id="palindrom">
   var n = +prompt()
   var s = 1
+  var flag = 0
   for (var i = 1; i <= 10; i++) { //判断输入的是几位数
     if ((n % (10 ** (i + 1)) - n % (10 ** (i))) != 0)
       s++
   }
   var a = n % 10
   if (s == 1) {
-    console.log('YES')
+    flag = 1
   }
-  else
-    if (a == ((n % (10 ** (s)) - n % (10 ** (s - 1))) / 10 ** (s - 1))) {
-      for (var j = 1; j < s; j++) {
-        if (((n % (10 ** (j + 1)) - n % (10 ** (j))) / 10 ** (j)) == (n % (10 ** (s)) - n % (10 ** (s - 1))) / 10 ** (s - 1)) {
-          console.log('YES')
-        }
+  else {
+    if (a == ((n % (10 ** (s)) - n % (10 ** (s - 1))) / 10 ** (s - 1))) {//第一位数是否等于最后一位
+      for (var j = 1; j < s; j++) {//第二位是否等于倒数第二位……
+        if (((n % (10 ** (j + 1)) - n % (10 ** (j))) / 10 ** (j)) != (n % (10 ** (s - j)) - n % (10 ** (s - j - 1))) / 10 ** (s - j - 1)) {
+          flag = 0
+          break
+        } else
+          flag = 1
       }
     }
     else
-      console.log('NO')
+      flag = 0
+  }
+  if (flag)
+    console.log('YES')
+  else
+    console.log('NO')
 </script>
 
 <script id="weekday">
@@ -1130,6 +1138,8 @@
 <script id="prime">
   var n = +prompt()
   var flag = 1
+  if (n == 0 || n == 1)
+    flag = 0
   for (var i = 2; i < n; i++) {
     if (n % i == 0) {//有其他因数
       flag = 0
@@ -1152,9 +1162,14 @@
 
 <script id="itob">
   var n = +prompt()
-  var a = n % 10
   var x = ''
-  var s = 1
+  var flag = 1
+  if (n < 0) {
+    flag = 0
+    n = -n
+  }
+  var a = n % 10//输入整数的个位部分
+  var s = 1//判断是几位数
   for (var j = 1; j < 10; j++) {
     if (n % (10 ** j) != n)
       s++
@@ -1165,7 +1180,10 @@
     }
   }
   x += a
-  console.log(x)
+  if (flag == 0)
+    console.log('-' + x)
+  else
+    console.log(x)
 
 </script>
 
