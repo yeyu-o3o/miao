@@ -1104,7 +1104,42 @@
 </script>
 
 <script id="weekday">
+  function getMonth天数(y, month) {
+    if (month == 2) {//二月的天数
+      if (y % 400 == 0 || y % 100 !== 0 && y % 4 == 0) {
+        return 29
+      } else {
+        return 28
+      }
+    } else {
+      switch (month) {//二月以外的天数
+        case 1:
+        case 3:
+        case 5:
+        case 7:
+        case 8:
+        case 10:
+        case 12:
+          return 31
+        default:
+          return 30
+      }
+    }
+  }
 
+  function weekday(year, month) {
+    var y = year - 1
+
+    var daySum = y * 365 + Math.floor(y / 4) - Math.floor(y / 100) + Math.floor(y / 400)
+
+    for (var m = 1; m < month; m++) {
+      daySum += getMonth天数(year, m)
+    }
+
+    return (daySum + 1) % 7
+  }
+
+  weekday(+prompt(), +prompt())
 </script>
 
 <script id="complete-number">
@@ -1218,4 +1253,25 @@
     }
   }
   console.log(min)
+</script>
+
+<script id="sqrt">
+  function sqrt(n) {
+    var left = 0
+    var right = n
+    while (right - left > 0.00000001) { //左右范围的距离大于0.0000000001的时候进行二分法
+      var mid = (left + right) / 2
+      if (mid * mid > n) {
+        right = mid
+      }
+      else if (mid * mid < n) {
+        left = mid
+      }
+      else
+        return mid
+    }
+    return (left + right) / 2//当左右范围小于等于0.0000000001的时候直接输出(left+right)/2
+  }
+  console.log(sqrt(+prompt()))
+
 </script>
