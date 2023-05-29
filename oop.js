@@ -72,3 +72,85 @@ class Stack {
   }
 }
 
+class Queue {
+  constructor() {
+    this.head = null
+    this.tail = null
+    this.c = 0
+  }
+  add(val) {
+    var node = {
+      val, next: null
+    }
+    if (this.head == null) {
+      this.head = this.tail = node
+    } else {
+      this.tail.next = node
+      this.tail = node
+    }
+    this.c++
+  }
+  pop() {
+    if (this.head == null) {
+      return
+    }
+    this.c--
+    if (this.head == this.tail) {//只有一个节点时
+      var res = this.head.val
+      this.head = this.tail = null
+      return res
+    }
+    //有多个节点时
+    var res = this.head.val
+    this.head = this.head.next
+    return res
+  }
+  size() {
+    return this.c
+  }
+}
+
+class LinkedList {
+  constructor() {
+    this.head = null
+    this.tail = null
+    this.c = 0
+  }
+  append() {
+    var node = {
+      val, next: null
+    }
+    if (this.head == null) {
+      this.head = this.tail = node
+    } else {
+      this.tail.next = node
+      this.tail = node
+    }
+    this.c++
+  }
+  prepend() {
+    var node = {
+      val, next: null
+    }
+    if (this.head == null) {
+      this.head = this.tail = node
+    } else {
+      node.next = this.head
+      this.head = node
+    }
+    this.c++
+  }
+  at(idx) {
+    var p = this.head
+    var count = 0
+    while (count < idx) {
+      p = p.next
+      count++
+    }
+    return p.val
+  }
+  size() {
+    return this.c
+  }
+}
+
