@@ -156,3 +156,69 @@ class LinkedList {
     return this.c
   }
 }
+
+class MyMap {
+  constructor() {
+    this.keys = []
+    this.vals = []
+  }
+  set(key, val) {
+    var idx = this.keys.indexOf(key)
+    if (idx < 0) {
+      this.keys.push(key)
+      this.vals.push(val)
+    } else {
+      this.vals[key] = val
+    }
+    return this
+  }
+  get(key) {
+    var idx = this.keys.indexOf(key)
+    if (idx >= 0) {
+      return this.vals[idx]
+    }
+  }
+  has(key) {
+    var x = this.keys.includes(key)
+    if (x) {
+      return true
+    } else {
+      return false
+    }
+  }
+  delete(key) {
+    var idx = this.keys.includes(key)
+    if (idx >= 0) {
+      this.keys.splice(idx, 1)
+      this.vals.splice(idx, 1)
+      return true
+    }
+    return false
+  }
+  get size() {
+    return this.keys.length
+  }
+}
+
+class MySet {
+  constructor() {
+    this.items = []
+  }
+  add(val) {
+    if (!this.has(val)) {
+      this.items.push(val)
+    }
+  }
+  remove(val) {
+    if (this.has(val)) {
+      var idx = this.items.indexOf(val)
+      this.items.splice(idx, 1)
+    }
+  }
+  has(val) {
+    return this.items.includes(val)
+  }
+  get size() {
+    return this.items.length
+  }
+}
