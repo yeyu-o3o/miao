@@ -168,7 +168,7 @@ class MyMap {
       this.keys.push(key)
       this.vals.push(val)
     } else {
-      this.vals[key] = val
+      this.vals[idx] = val
     }
     return this
   }
