@@ -1,3 +1,6 @@
+// http://10.3.3.3:33312/statics/task/oop-test.html
+
+
 class Vector {
   constructor(x, y) {
     this.x = x
@@ -6,12 +9,12 @@ class Vector {
   plus(vector) {
     var x = this.x + vector.x
     var y = this.y + vector.y
-    return new Vector
+    return new Vector(x, y)
   }
   minus(vector) {
     var x = this.x - vector.x
     var y = this.y - vector.y
-    return new Vector
+    return new Vector(x, y)
   }
   length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)
@@ -23,20 +26,20 @@ class Complex {
     this.real = real
     this.imag = imag
   }
-  static plus(c1, c2) {
-    return new Complex(c1.real + c2.real, c1.imag + c2.imag)
+  static plus(c) {
+    return new Complex(this.real + c.real, this.imag + c.imag)
   }
-  static minus(c1, c2) {
-    return new Complex(c1.real - c2.real, c1.imag - c2.imag)
+  static minus(c) {
+    return new Complex(this.real - c.real, this.imag - c.imag)
   }
-  static mul(c1, c2) {
-    var real = c1.real * c2.real - (c1.imag * c2.imag)
-    var imag = c1.real * c2.imag + c2.real * c1.imag
+  static mul(c) {
+    var real = this.real * c.real - (this.imag * c.imag)
+    var imag = this.real * c.imag + c.real * this.imag
     return new Complex(real, imag)
   }
-  static div(c1, c2) {
-    var real = (c1.real * c2.real + c1.imag * c2.imag) / (c2.real * c2.real + c2.imaginary * c2.imaginary)
-    var imag = c2.real * c2.real + c2.imag * c2.imag / (c2.real * c2.real + c2.imaginary * c2.imaginary)
+  static div(c) {
+    var real = (this.real * c.real + this.imag * c.imag) / (c.real * c.real + c.imag * c.imag)
+    var imag = this.imag * c.real - this.real * c.imag / (c.real * c.real + c.imag * c.imag)
     return new Complex(real, imag)
   }
 }
@@ -67,7 +70,7 @@ class Stack {
     this.c--
     return val
   }
-  size() {
+  get size() {
     return this.c
   }
 }
@@ -105,7 +108,7 @@ class Queue {
     this.head = this.head.next
     return res
   }
-  size() {
+  get size() {
     return this.c
   }
 }
@@ -116,7 +119,7 @@ class LinkedList {
     this.tail = null
     this.c = 0
   }
-  append() {
+  append(val) {
     var node = {
       val, next: null
     }
@@ -128,7 +131,7 @@ class LinkedList {
     }
     this.c++
   }
-  prepend() {
+  prepend(val) {
     var node = {
       val, next: null
     }
@@ -149,8 +152,7 @@ class LinkedList {
     }
     return p.val
   }
-  size() {
+  get size() {
     return this.c
   }
 }
-
