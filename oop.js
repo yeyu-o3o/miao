@@ -16,7 +16,7 @@ class Vector {
     var y = this.y - vector.y
     return new Vector(x, y)
   }
-  length() {
+  get length() {
     return Math.sqrt(this.x * this.x + this.y * this.y)
   }
 }
@@ -26,20 +26,20 @@ class Complex {
     this.real = real
     this.imag = imag
   }
-  static plus(c) {
+  plus(c) {
     return new Complex(this.real + c.real, this.imag + c.imag)
   }
-  static minus(c) {
+  minus(c) {
     return new Complex(this.real - c.real, this.imag - c.imag)
   }
-  static mul(c) {
+  mul(c) {
     var real = this.real * c.real - (this.imag * c.imag)
     var imag = this.real * c.imag + c.real * this.imag
     return new Complex(real, imag)
   }
-  static div(c) {
+  div(c) {
     var real = (this.real * c.real + this.imag * c.imag) / (c.real * c.real + c.imag * c.imag)
-    var imag = this.imag * c.real - this.real * c.imag / (c.real * c.real + c.imag * c.imag)
+    var imag = (this.imag * c.real - this.real * c.imag) / (c.real * c.real + c.imag * c.imag)
     return new Complex(real, imag)
   }
 }
