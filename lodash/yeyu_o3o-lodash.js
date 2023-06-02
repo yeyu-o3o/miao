@@ -10,7 +10,7 @@ var yeyu_o3o = {
     return res
   },
 
-  chunk: function (array, [size = 1]) {
+  chunk: function (array, size = 1) {
     var res = []
     for (var i = 0; i < array.length; i += size) {
       res.push(array.slice(i, i + size))
@@ -18,14 +18,14 @@ var yeyu_o3o = {
     return res
   },
 
-  fill: function (array, value, [start = 0], [end = array.length]) {
+  fill: function (array, value, start = 0, end = array.length) {
     for (var i = start; i < end; i++) {
       array[i] = value
     }
     return array
   },
 
-  drop: function (array, [n = 1]) {
+  drop: function (array, n = 1) {
     return array.slice(0, n)
   }
 }
