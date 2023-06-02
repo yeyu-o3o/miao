@@ -26,7 +26,20 @@ var yeyu_o3o = {
   },
 
   drop: function (array, n = 1) {
-    return array.slice(0, n)
+    return array.slice(n - 1)
+  },
+
+  findIndex: function (array, predicate = _.identity, fromIndex = 0) {
+    for (var i = fromIndex; i < array.length; i++) {
+      if (predicate(array[i])) {
+        return i
+      }
+    }
+    return -1
+  },
+
+  findLastIndex(array, predicate = _.identity, fromIndex = 0) {
+
   }
 }
 
