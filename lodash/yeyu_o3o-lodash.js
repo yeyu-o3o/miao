@@ -1,8 +1,8 @@
-var yeyu_o3o = {
+const yeyu_o3o = {
 
   compact: function (array) {
-    var res = []
-    for (var i = 0; i < array.length; i++) {
+    let res = []
+    for (let i = 0; i < array.length; i++) {
       if (array[i]) {
         res.push(array[i])
       }
@@ -11,15 +11,15 @@ var yeyu_o3o = {
   },
 
   chunk: function (array, size = 1) {
-    var res = []
-    for (var i = 0; i < array.length; i += size) {
+    let res = []
+    for (let i = 0; i < array.length; i += size) {
       res.push(array.slice(i, i + size))
     }
     return res
   },
 
   fill: function (array, value, start = 0, end = array.length) {
-    for (var i = start; i < end; i++) {
+    for (let i = start; i < end; i++) {
       array[i] = value
     }
     return array
@@ -34,7 +34,7 @@ var yeyu_o3o = {
   },
 
   findIndex: function (array, predicate = identity, fromIndex = 0) {
-    for (var i = fromIndex; i < array.length; i++) {
+    for (let i = fromIndex; i < array.length; i++) {
       if (predicate(array[i])) {
         return i
       }
@@ -43,12 +43,62 @@ var yeyu_o3o = {
   },
 
   findLastIndex(array, predicate = identity, fromIndex = array.length - 1) {
-    for (var i = fromIndex; i < array.length; i--) {
-      if (predicate(array[i])) {
+    for (let i = fromIndex; i < array.length; i--) {
+      if (this.predicate(array[i])) {
         return i
       }
     }
     return -1
+  },
+
+  flatten: function (array) {
+    let res = []
+    for (let i = 0; i < array.length; i++) {
+      if (Array.isArray(array[i])) {
+        res.push(...array[i])
+      } else {
+        res.push(array[i])
+      }
+    }
+    return res
+  },
+
+  flattenDeep: function (array) {
+    let res = []
+
+    function fn(array) {
+      let t = this.flatten(array)
+      for (let i of t) {
+        if (Array.isArray(i)) {
+          fn(i)
+        } else {
+          res.push(i)
+        }
+      }
+    }
+
+    fn(array)
+    return res
+  },
+
+  flattenDepth: function (array, depth = 1) {
+    let res = []
+
+    if (depth == 0) {
+      return res
+    }
+
+    if (depth !== 0) {
+      for (let i of array) {
+        if (Array.isArray(array[i])) {
+          let t = this.flattenDepth(array[i], depth - 1)
+          res.push(...t)
+        } else {
+          res.push(i)
+        }
+      }
+    }
+    return res
   }
 }
 
