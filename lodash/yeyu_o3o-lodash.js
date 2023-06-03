@@ -26,10 +26,14 @@ var yeyu_o3o = {
   },
 
   drop: function (array, n = 1) {
-    return array.slice(n - 1)
+    return array.slice(n)
   },
 
-  findIndex: function (array, predicate = _.identity, fromIndex = 0) {
+  identity: function (value) {
+    return value
+  },
+
+  findIndex: function (array, predicate = identity, fromIndex = 0) {
     for (var i = fromIndex; i < array.length; i++) {
       if (predicate(array[i])) {
         return i
@@ -38,8 +42,13 @@ var yeyu_o3o = {
     return -1
   },
 
-  findLastIndex(array, predicate = _.identity, fromIndex = 0) {
-
+  findLastIndex(array, predicate = identity, fromIndex = array.length - 1) {
+    for (var i = fromIndex; i < array.length; i--) {
+      if (predicate(array[i])) {
+        return i
+      }
+    }
+    return -1
   }
 }
 
