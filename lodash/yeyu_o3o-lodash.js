@@ -42,7 +42,7 @@ const yeyu_o3o = {
     return -1
   },
 
-  findLastIndex(array, predicate = identity, fromIndex = array.length - 1) {
+  findLastIndex: function (array, predicate = identity, fromIndex = array.length - 1) {
     for (let i = fromIndex; i < array.length; i--) {
       if (this.predicate(array[i])) {
         return i
