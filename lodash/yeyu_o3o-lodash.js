@@ -107,6 +107,40 @@ const yeyu_o3o = {
       res[pairs[i][0]] = pairs[i][1]
     }
     return res
+  },
+
+  toPairs: (object) => {
+    var res = []
+    for (let key in object) {
+      var t = []
+      t.push(key)
+      t.push(object[key])
+      res.push(t)
+    }
+    return res
+  },
+
+  head: (array) => array[0],
+
+  indexOf: (array, value, fromIndex = 0) => {
+    if (fromIndex < 0) {
+      fromIndex = fromIndex + array.length
+    }
+    for (let i = fromIndex; i < array.length; i++) {
+      if (value == array[i]) {
+        return i
+      }
+    }
+    return -1
+  },
+
+  lastIndexOf: (array, value, fromIndex = array.length - 1) => {
+    for (let i = fromIndex; i < array.length; i--) {
+      if (value == array[i]) {
+        return i
+      }
+    }
+    return -1
   }
 }
 
