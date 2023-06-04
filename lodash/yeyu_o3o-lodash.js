@@ -1,4 +1,4 @@
-const yeyu_o3o = {
+var yeyu_o3o = {
 
   compact: function (array) {
     let res = []
@@ -151,6 +151,20 @@ const yeyu_o3o = {
       res = val + separator
     }
     return res.slice(0, -1)
+  },
+
+  last: array => array[array.length - 1],
+
+  pull: (array, ...values) => {
+    for (let i = 0; i < array.length; i++) {
+      if (array[i] == values) {
+
+      }
+    }
+  },
+
+  remove: (array, predicate = identity) => {
+
   }
 
 }
