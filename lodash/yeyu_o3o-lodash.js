@@ -141,7 +141,11 @@ const yeyu_o3o = {
       }
     }
     return -1
-  }
+  },
+
+  initial: array => array.slice(-1),
+
+
 }
 
 // http://10.3.3.3:33312/statics/lodash/
