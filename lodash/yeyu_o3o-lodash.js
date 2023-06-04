@@ -109,7 +109,7 @@ const yeyu_o3o = {
     return res
   },
 
-  toPairs: (object) => {
+  toPairs: object => {
     var res = []
     for (let key in object) {
       var t = []
@@ -120,7 +120,7 @@ const yeyu_o3o = {
     return res
   },
 
-  head: (array) => array[0],
+  head: array => array[0] ? array[0] : undefined,
 
   indexOf: (array, value, fromIndex = 0) => {
     if (fromIndex < 0) {
@@ -145,6 +145,13 @@ const yeyu_o3o = {
 
   initial: array => array.slice(-1),
 
+  join: (array, separator = ',') => {
+    var res = ''
+    for (let val of array) {
+      res = val + separator
+    }
+    return res.slice(0, -1)
+  }
 
 }
 
