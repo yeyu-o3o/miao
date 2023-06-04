@@ -99,6 +99,14 @@ const yeyu_o3o = {
       }
     }
     return res
+  },
+
+  fromPairs: function (pairs) {
+    var res = {}
+    for (let i = 0; i < pairs.length; i++) {
+      res[pairs[i][0]] = pairs[i][1]
+    }
+    return res
   }
 }
 
