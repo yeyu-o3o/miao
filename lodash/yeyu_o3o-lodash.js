@@ -254,7 +254,7 @@ var yeyu_o3o = {
       if (typeof (predicate) == 'object') {
         // 如果是数组
         if (Array.isArray(predicate)) {
-          if (!predicate[0] in collection[i] || !predicate[1] == collection[i][predicate[0]]) {
+          if (!(predicate[0] in collection[i]) || !(predicate[1] == collection[i][predicate[0]])) {
             return false
           }
         }
@@ -272,7 +272,7 @@ var yeyu_o3o = {
       }
       // 如果是字符串
       if (typeof (predicate) == 'string') {
-        if (!predicate in collection[i] || !collection[i][predicate]) {
+        if (!(predicate in collection[i]) || !(collection[i][predicate])) {
           return false
         }
       }
@@ -284,7 +284,48 @@ var yeyu_o3o = {
       }
     }
     return true
-  }
+  },
+
+  some: (collection, predicate = yeyu_o3o.identity) => {
+    // 遍历集合
+    for (let i = 0; i < collection.length; i++) {
+      // 如果是函数
+      if (typeof (predicate) == 'function') {
+        if (predicate(collection[i])) {
+          return true
+        }
+      }
+      // 如果是对象
+      if (typeof (predicate) == 'object') {
+        // 如果是数组
+        if (Array.isArray(predicate)) {
+          if (predicate[0] in collection[i] && predicate[1] == collection[i][predicate[0]]) {
+            return true
+          }
+        }
+        // 是对象,遍历对象
+        for (var key in predicate) {
+          // 如果key在集合里不存在
+          if (key in collection[i] && collection[i][key]) {
+            return true
+          }
+        }
+      }
+      // 如果是字符串
+      if (typeof (predicate) == 'string') {
+        if (predicate in collection[i] && collection[i][predicate]) {
+          return true
+        }
+      }
+      // 如果是布尔值
+      if (predicate == 'Boolean') {
+        if (predicate[i]) {
+          return true
+        }
+      }
+    }
+    return false
+  },
 
 }
 
