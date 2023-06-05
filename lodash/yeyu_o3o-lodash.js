@@ -216,12 +216,12 @@ var yeyu_o3o = {
   last: array => array[array.length - 1],
 
   pull: (array, ...values) => {
-    let res = []
     for (let i = 0; i < array.length; i++) {
       for (let item of values) {
         if (array[i] == item) {
-          res.push(array[i])
           array.splice(i, 1)
+          i--
+          break
         }
       }
     }
@@ -269,6 +269,16 @@ var yeyu_o3o = {
             }
           }
         }
+        for (var key in collection[i]) {
+          // 如果key在集合里不存在
+          if (!key in predicate) {
+            return false
+          } else {
+            if (!(predicate[key] == collection[i][key])) {
+              return false
+            }
+          }
+        }
       }
       // 如果是字符串
       if (typeof (predicate) == 'string') {
@@ -287,45 +297,108 @@ var yeyu_o3o = {
   },
 
   some: (collection, predicate = yeyu_o3o.identity) => {
-    // 遍历集合
-    for (let i = 0; i < collection.length; i++) {
-      // 如果是函数
-      if (typeof (predicate) == 'function') {
-        if (predicate(collection[i])) {
-          return true
-        }
-      }
-      // 如果是对象
-      if (typeof (predicate) == 'object') {
-        // 如果是数组
-        if (Array.isArray(predicate)) {
-          if (predicate[0] in collection[i] && predicate[1] == collection[i][predicate[0]]) {
-            return true
-          }
-        }
-        // 是对象,遍历对象
-        for (var key in predicate) {
-          // 如果key在集合里不存在
-          if (key in collection[i] && collection[i][key]) {
-            return true
-          }
-        }
-      }
-      // 如果是字符串
-      if (typeof (predicate) == 'string') {
-        if (predicate in collection[i] && collection[i][predicate]) {
-          return true
-        }
-      }
-      // 如果是布尔值
-      if (predicate == 'Boolean') {
-        if (predicate[i]) {
-          return true
-        }
+    predicate = yeyu_o3o.transformPredicate(predicate)
+    for (let val of collection) {
+      if (predicate(val)) {
+        return true
       }
     }
     return false
+    // // 遍历集合
+    // for (let i = 0; i < collection.length; i++) {
+    //   // 如果是函数
+    //   if (typeof (predicate) == 'function') {
+    //     if (predicate(collection[i])) {
+    //       return true
+    //     }
+    //   }
+    //   // 如果是对象
+    //   if (typeof (predicate) == 'object') {
+    //     // 如果是数组
+    //     if (Array.isArray(predicate)) {
+    //       if (predicate[0] in collection[i] && predicate[1] == collection[i][predicate[0]]) {
+    //         return true
+    //       }
+    //     }
+    //     // 是对象,遍历对象
+    //     for (var key in predicate) {
+    //       // 如果key在集合里不存在
+    //       if (key in collection[i] && collection[i][key]) {
+    //         return true
+    //       }
+    //     }
+    //     for (var key in collection[i]) {
+    //       if (predicate[key] == collection[i][key]) {
+    //         return true
+    //       }
+    //     }
+    //   }
+    // }
+    // // 如果是字符串
+    // if (typeof (predicate) == 'string') {
+    //   if (predicate in collection[i] && collection[i][predicate]) {
+    //     return true
+    //   }
+    // }
+    // // 如果是布尔值
+    // if (predicate == 'Boolean') {
+    //   if (predicate[i]) {
+    //     return true
+    //   }
+    // }
   },
+
+  transformPredicate: (predicate) => {
+    // 如果predicate是函数
+    if (typeof (predicate) == 'function') {
+      return predicate
+    }
+    // 如果predicate是数组
+    if (Array.isArray(predicate)) {
+      var key = predicate[0]
+      var value = predicate[1]
+      return obj => obj[key] == value
+    }
+    // 如果predicate是对象
+    if (typeof (predicate) == 'object') {
+      // 目标是返回一个函数
+      return obj => {
+        // 判断obj是否在predicate里面
+        for (let key in obj) {
+          var val1 = obj[key]
+          var val2 = predicate[key]
+          if (!(key in predicate)) {
+            return false
+          } else {
+            if (!(val1 == val2)) {
+              return false
+            }
+          }
+        }
+        // 判断predicate是否在obj里面
+        for (let key in predicate) {
+          var val1 = obj[key]
+          var val2 = predicate[key]
+          if (!(key in obj)) {
+            return false
+          } else {
+            if (!(val1 == val2)) {
+              return false
+            }
+          }
+        }
+        return true
+      }
+    }
+    // 如果predicate是字符串
+    if (typeof (predicate) == 'string') {
+      return obj => obj[predicate]
+    }
+  },
+
+  countBy: (collection, iteratee = identity) => {
+
+  }
 
 }
 
