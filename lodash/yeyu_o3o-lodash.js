@@ -195,7 +195,7 @@ var yeyu_o3o = {
   },
 
   lastIndexOf: (array, value, fromIndex = array.length - 1) => {
-    for (let i = fromIndex; i < array.length; i--) {
+    for (let i = fromIndex; i > 0; i--) {
       if (value == array[i]) {
         return i
       }
@@ -203,12 +203,12 @@ var yeyu_o3o = {
     return -1
   },
 
-  initial: array => array.slice(-1),
+  initial: array => array.slice(0, -1),
 
   join: (array, separator = ',') => {
     var res = ''
     for (let val of array) {
-      res = val + separator
+      res = res + val + separator
     }
     return res.slice(0, -1)
   },
