@@ -37,7 +37,7 @@ var yeyu_o3o = {
     // 遍历数组
     for (i = fromIndex; i < array.length; i++) {
       // 如果是函数
-      if (typeof (test) == 'function') {
+      if (typeof (predicate) == 'function') {
         if (predicate(array[i]) == true) {
           return i
         }
@@ -76,7 +76,7 @@ var yeyu_o3o = {
     // 遍历数组
     for (i = fromIndex; i < array.length; i--) {
       // 如果是函数
-      if (typeof (test) == 'function') {
+      if (typeof (predicate) == 'function') {
         if (predicate(array[i]) == true) {
           return i
         }
@@ -254,7 +254,7 @@ var yeyu_o3o = {
       if (typeof (predicate) == 'object') {
         // 如果是数组
         if (Array.isArray(predicate)) {
-          if (!predicate[0] in array[i] || !predicate[1] == array[i][predicate[0]]) {
+          if (!predicate[0] in collection[i] || !predicate[1] == collection[i][predicate[0]]) {
             return false
           }
         }
@@ -264,7 +264,7 @@ var yeyu_o3o = {
           if (!key in collection[i]) {
             return false
           } else {
-            if (!predicate[key] == collection[i][key]) {
+            if (!(predicate[key] == collection[i][key])) {
               return false
             }
           }
