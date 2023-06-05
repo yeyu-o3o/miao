@@ -127,7 +127,7 @@ var yeyu_o3o = {
     let res = []
 
     function fn(array) {
-      let t = this.flatten(array)
+      let t = yeyu_o3o.flatten(array)
       for (let i of t) {
         if (Array.isArray(i)) {
           fn(i)
@@ -151,7 +151,7 @@ var yeyu_o3o = {
     if (depth !== 0) {
       for (let i of array) {
         if (Array.isArray(array[i])) {
-          let t = this.flattenDepth(array[i], depth - 1)
+          let t = yeyu_o3o.flattenDepth(array[i], depth - 1)
           res.push(...t)
         } else {
           res.push(i)
