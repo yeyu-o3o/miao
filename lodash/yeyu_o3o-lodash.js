@@ -225,7 +225,7 @@ var yeyu_o3o = {
         }
       }
     }
-    return res
+    return array
   },
 
   _swap: (array, i, j) => {
