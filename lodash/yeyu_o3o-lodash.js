@@ -34,18 +34,78 @@ var yeyu_o3o = {
   },
 
   findIndex: function (array, predicate = identity, fromIndex = 0) {
-    for (let i = fromIndex; i < array.length; i++) {
-      if (predicate(array[i])) {
-        return i
+    // 遍历数组
+    for (i = fromIndex; i < array.length; i++) {
+      // 如果是函数
+      if (typeof (test) == 'function') {
+        if (predicate(array[i]) == true) {
+          return i
+        }
+      }
+      // 如果是对象
+      if (typeof (predicate) == 'object') {
+        // 如果是数组
+        if (Array.isArray(predicate)) {
+          if (predicate[0] in array[i] && predicate[1] == array[i][predicate[0]]) {
+            return i
+          }
+        } else {
+          // 如果是键值对
+          let c = true
+          for (let item in predicate) {
+            if (array[i][item] !== predicate[item]) {
+              c = false
+            }
+          }
+          if (c) {
+            return i
+          }
+        }
+      }
+      // 如果是字符串
+      if (typeof (predicate) == 'string') {
+        if (predicate in array[i] && array[i][predicate]) {
+          return i
+        }
       }
     }
     return -1
   },
 
   findLastIndex: function (array, predicate = identity, fromIndex = array.length - 1) {
-    for (let i = fromIndex; i < array.length; i--) {
-      if (this.predicate(array[i])) {
-        return i
+    // 遍历数组
+    for (i = fromIndex; i < array.length; i--) {
+      // 如果是函数
+      if (typeof (test) == 'function') {
+        if (predicate(array[i]) == true) {
+          return i
+        }
+      }
+      // 如果是对象
+      if (typeof (predicate) == 'object') {
+        // 如果是数组
+        if (Array.isArray(predicate)) {
+          if (predicate[0] in array[i] && predicate[1] == array[i][predicate[0]]) {
+            return i
+          }
+        } else {
+          // 如果是键值对
+          let c = true
+          for (let item in predicate) {
+            if (array[i][item] !== predicate[item]) {
+              c = false
+            }
+          }
+          if (c) {
+            return i
+          }
+        }
+      }
+      // 如果是字符串
+      if (typeof (predicate) == 'string') {
+        if (predicate in array[i] && array[i][predicate]) {
+          return i
+        }
       }
     }
     return -1
@@ -156,18 +216,87 @@ var yeyu_o3o = {
   last: array => array[array.length - 1],
 
   pull: (array, ...values) => {
+    let res = []
     for (let i = 0; i < array.length; i++) {
-      if (array[i] == values) {
-
+      for (let item of values) {
+        if (array[i] == item) {
+          res.push(array[i])
+          array.splice(i, 1)
+        }
       }
     }
+    return res
   },
 
-  remove: (array, predicate = identity) => {
+  _swap: (array, i, j) => {
+    let t = array[i]
+    array[i] = array[j]
+    array[j] = t
+  },
 
+  reverse: array => {
+    for (let i = 0; i < array.length >> 1; i++) {
+      yeyu_o3o._swap(array, i, array.length - 1 - i)
+    }
+    return array
+  },
+
+  every: (collection, predicate = yeyu_o3o.identity) => {
+    // 遍历集合
+    for (let i = 0; i < collection.length; i++) {
+      // 如果是函数
+      if (typeof (predicate) == 'function') {
+        if (!predicate(collection[i])) {
+          return false
+        }
+      }
+      // 如果是对象
+      if (typeof (predicate) == 'object') {
+        // 如果是数组
+        if (Array.isArray(predicate)) {
+          if (!predicate[0] in array[i] || !predicate[1] == array[i][predicate[0]]) {
+            return false
+          }
+        }
+        // 是对象
+        for (var key in predicate) {
+          // 如果key在集合里不存在
+          if (!key in collection[i]) {
+            return false
+          } else {
+            if (!predicate[key] == collection[i][key]) {
+              return false
+            }
+          }
+        }
+      }
+      // 如果是字符串
+      if (typeof (predicate) == 'string') {
+        if (!predicate in collection[i] || !collection[i][predicate]) {
+          return false
+        }
+      }
+      // 如果是布尔值
+      if (typeof (predicate) == 'boolean') {
+        if (!predicate[i]) {
+          return false
+        }
+      }
+    }
+    return true
   }
 
 }
 
 // http://10.3.3.3:33312/statics/lodash/
 // https://www.lodashjs.com/
+
+// 可以按以下顺序实现
+// compact, chunk, fill, drop, findIndex, findLastIndex, flatten, flattenDeep, flattenDepth
+// fromPairs, toPairs, head, indexOf, lastIndexOf, initial, join, last, pull, reverse, every, some
+// countBy, groupBy, keyBy, forEach, map, filter, reduce, reduceRight, size, sortBy, sample,
+//   isUndefined, isNull, isNil, max, min, maxBy, minBy, round, sumBy
+// flagMap, flatMapDepth, get, has, mapKeys, mapValues
+// range, stringifyJSON, concat, isEqual, repeat, padStart, padEnd, pad, keys, values, random,
+//   round, ceil, floor, cloneDeep
+// trim, trimStart, trimEnd, assign, merge,
