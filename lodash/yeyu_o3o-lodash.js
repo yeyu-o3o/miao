@@ -220,6 +220,7 @@ var yeyu_o3o = {
       for (let item of values) {
         if (array[i] == item) {
           array.splice(i, 1)
+          // 这里要注意splice方法会改变原数组的下标
           i--
           break
         }
