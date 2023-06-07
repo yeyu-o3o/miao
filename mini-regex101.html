@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    #res {
+      height: 60px;
+      width: 300px;
+      border: 1px solid;
+    }
+
+    b:nth-child(odd) {
+      background-color: #d5ebff;
+    }
+
+    b:nth-child(even) {
+      background-color: #9fcfff;
+    }
+  </style>
+</head>
+
+<body>
+  正则表达式 <br>
+  <input type="text" id="reInput" value='fo' onkeyup="run()">
+  <br>
+  <label><input id="flagG" type="checkbox" checked>g</label>
+  <label><input id="flagI" type="checkbox">i</label>
+  <label><input id="flagM" type="checkbox">m</label>
+  <label><input id="flagS" type="checkbox">s</label>
+  <label><input id="flagU" type="checkbox">u</label>
+  <label><input id="flagY" type="checkbox">y</label>
+  <br>
+  测试字符串 <br>
+  <textarea name="" id="testStr" cols="30" rows="10" onkeyup="run()">fooas dffoaasd dffobasdffoc</textarea>
+  <div id="res"></div>
+</body>
+
+<script>
+  function getFlags() {
+    flags = ''
+    if (flagG.checked) {
+      flags += 'g'
+    }
+    if (flagI.checked) {
+      flags += 'i'
+    }
+    if (flagM.checked) {
+      flags += 'm'
+    }
+    if (flagS.checked) {
+      flags += 's'
+    }
+    if (flagU.checked) {
+      flags += 'u'
+    }
+    if (flagY.checked) {
+      flags += 'y'
+    }
+    return flags
+  }
+
+  function run() {
+    var reg = reInput.value
+    var flags = getFlags()
+    var re = new RegExp(reg, flags)
+    var str = testStr.value
+    res.innerHTML = str.replace(re, i => `<b>${i}</b>`)
+  }
+
+
+</script>
+
+</html>

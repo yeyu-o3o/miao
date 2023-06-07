@@ -243,58 +243,65 @@ var yeyu_o3o = {
   },
 
   every: (collection, predicate = yeyu_o3o.identity) => {
-    // 遍历集合
-    for (let i = 0; i < collection.length; i++) {
-      // 如果是函数
-      if (typeof (predicate) == 'function') {
-        if (!predicate(collection[i])) {
-          return false
-        }
-      }
-      // 如果是对象
-      if (typeof (predicate) == 'object') {
-        // 如果是数组
-        if (Array.isArray(predicate)) {
-          if (!(predicate[0] in collection[i]) || !(predicate[1] == collection[i][predicate[0]])) {
-            return false
-          }
-        }
-        // 是对象
-        for (var key in predicate) {
-          // 如果key在集合里不存在
-          if (!key in collection[i]) {
-            return false
-          } else {
-            if (!(predicate[key] == collection[i][key])) {
-              return false
-            }
-          }
-        }
-        for (var key in collection[i]) {
-          // 如果key在集合里不存在
-          if (!key in predicate) {
-            return false
-          } else {
-            if (!(predicate[key] == collection[i][key])) {
-              return false
-            }
-          }
-        }
-      }
-      // 如果是字符串
-      if (typeof (predicate) == 'string') {
-        if (!(predicate in collection[i]) || !(collection[i][predicate])) {
-          return false
-        }
-      }
-      // 如果是布尔值
-      if (typeof (predicate) == 'boolean') {
-        if (!predicate[i]) {
-          return false
-        }
+    predicate = yeyu_o3o.transformPredicate(predicate)
+    for (var value of collection) {
+      if (!predicate(value)) {
+        return false
       }
     }
     return true
+    // // 遍历集合
+    // for (let i = 0; i < collection.length; i++) {
+    //   // 如果是函数
+    //   if (typeof (predicate) == 'function') {
+    //     if (!predicate(collection[i])) {
+    //       return false
+    //     }
+    //   }
+    //   // 如果是对象
+    //   if (typeof (predicate) == 'object') {
+    //     // 如果是数组
+    //     if (Array.isArray(predicate)) {
+    //       if (!(predicate[0] in collection[i]) || !(predicate[1] == collection[i][predicate[0]])) {
+    //         return false
+    //       }
+    //     }
+    //     // 是对象
+    //     for (var key in predicate) {
+    //       // 如果key在集合里不存在
+    //       if (!key in collection[i]) {
+    //         return false
+    //       } else {
+    //         if (!(predicate[key] == collection[i][key])) {
+    //           return false
+    //         }
+    //       }
+    //     }
+    //     for (var key in collection[i]) {
+    //       // 如果key在集合里不存在
+    //       if (!key in predicate) {
+    //         return false
+    //       } else {
+    //         if (!(predicate[key] == collection[i][key])) {
+    //           return false
+    //         }
+    //       }
+    //     }
+    //   }
+    //   // 如果是字符串
+    //   if (typeof (predicate) == 'string') {
+    //     if (!(predicate in collection[i]) || !(collection[i][predicate])) {
+    //       return false
+    //     }
+    //   }
+    //   // 如果是布尔值
+    //   if (typeof (predicate) == 'boolean') {
+    //     if (!predicate[i]) {
+    //       return false
+    //     }
+    //   }
+    // }
+    // return true
   },
 
   some: (collection, predicate = yeyu_o3o.identity) => {
@@ -394,6 +401,22 @@ var yeyu_o3o = {
     // 如果predicate是字符串
     if (typeof (predicate) == 'string') {
       return obj => obj[predicate]
+    }
+  },
+
+  transformIteratee: iteratee => {
+    // 返回值应为函数
+    if (typeof (iteratee) == 'function') {
+      return iteratee
+    }
+    if (Array.isArray(iteratee)) {
+
+    }
+    if (typeof (iteratee) == 'object') {
+
+    }
+    if (typeof (iteratee) == 'string') {
+      return obj => obj[iteratee]
     }
   },
 
