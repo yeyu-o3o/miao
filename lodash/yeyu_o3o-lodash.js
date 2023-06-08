@@ -409,11 +409,16 @@ var yeyu_o3o = {
     if (typeof (iteratee) == 'function') {
       return iteratee
     }
-    if (Array.isArray(iteratee)) {
-
-    }
     if (typeof (iteratee) == 'object') {
-
+      //深度对比
+      return obj => {
+        for (var key in value) {
+          if (obj[key] !== value[key]) {
+            return false;
+          }
+        }
+        return true;
+      }
     }
     if (typeof (iteratee) == 'string') {
       return obj => obj[iteratee]
@@ -421,7 +426,18 @@ var yeyu_o3o = {
   },
 
   countBy: (collection, iteratee = identity) => {
+    iteratee = yeyu_o3o.transformIteratee(iteratee)
 
+    let res = {}
+    for (let value of collection) {
+      let key = iteratee(value)
+      if (!(key in res)) {
+        res[key] = 1
+      } else {
+        res[key]++
+      }
+    }
+    return res
   }
 
 }
