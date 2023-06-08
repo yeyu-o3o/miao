@@ -306,11 +306,13 @@ var yeyu_o3o = {
 
   some: (collection, predicate = yeyu_o3o.identity) => {
     predicate = yeyu_o3o.transformPredicate(predicate)
+
     for (let val of collection) {
       if (predicate(val)) {
         return true
       }
     }
+
     return false
     // // 遍历集合
     // for (let i = 0; i < collection.length; i++) {
