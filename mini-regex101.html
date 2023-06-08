@@ -20,23 +20,73 @@
     b:nth-child(even) {
       background-color: #9fcfff;
     }
+
+    pre>em {
+      border-left: 4px dotted violet;
+      margin-left: -2px;
+      margin-right: -2px;
+      filter: blur(0.4px);
+      position: relative;
+      z-index: 2;
+      pointer-events: none;
+      height: 1em;
+      vertical-align: bottom;
+      transition: .5s;
+
+      &:hover {
+        border-color: magenta;
+        box-shadow: 0 0 5px grey;
+      }
+    }
+
+    pre>b:nth-child(odd) {
+      background-color: #d5ebff;
+    }
+
+    pre>b:nth-child(even) {
+      background-color: #9fcfff;
+    }
+
+    pre i {
+      font-style: normal;
+    }
+
+    pre i[data-group="1"] {
+      background-color: #9fcba1;
+    }
+
+    pre i[data-group="2"] {
+      background-color: #e0bf8b;
+    }
+
+    pre i[data-group="3"] {
+      background-color: #acadfc;
+    }
+
+    pre i[data-group="4"] {
+      background-color: #e1abf5;
+    }
+
+    pre i[data-group="5"] {
+      background-color: #ef9b95;
+    }
   </style>
 </head>
 
 <body>
-  正则表达式 <br>
-  <input type="text" id="reInput" value='fo' onkeyup="run()">
+  正则表达式 <br><input type="text" id="reInput" value='(f)()((oo)(.))' onkeyup="run()">
   <br>
-  <label><input id="flagG" type="checkbox" checked>g</label>
-  <label><input id="flagI" type="checkbox">i</label>
-  <label><input id="flagM" type="checkbox">m</label>
-  <label><input id="flagS" type="checkbox">s</label>
-  <label><input id="flagU" type="checkbox">u</label>
-  <label><input id="flagY" type="checkbox">y</label>
+  <p id="reInputError"></p>
+  <label><input onclick="run()" id="flagG" type="checkbox" checked>g</label>
+  <label><input onclick="run()" id="flagI" type="checkbox">i</label>
+  <label><input onclick="run()" id="flagM" type="checkbox">m</label>
+  <label><input onclick="run()" id="flagS" type="checkbox">s</label>
+  <label><input onclick="run()" id="flagU" type="checkbox">u</label>
+  <label><input onclick="run()" id="flagY" type="checkbox">y</label>
   <br>
   测试字符串 <br>
-  <textarea name="" id="testStr" cols="30" rows="10" onkeyup="run()">fooas dffoaasd dffobasdffoc</textarea>
-  <div id="res"></div>
+  <textarea name="" id="testStr" cols="30" rows="10" onkeyup="run()">foo barbaz baa foobaa foobaa</textarea>
+  <pre id="res"></pre>
 </body>
 
 <script>
@@ -64,14 +114,76 @@
   }
 
   function run() {
-    var reg = reInput.value
-    var flags = getFlags()
-    var re = new RegExp(reg, flags)
-    var str = testStr.value
-    res.innerHTML = str.replace(re, i => `<b>${i}</b>`)
+    res.innerHTML = '' // 清空结果显示区域（id 为 res 的元素）
+    var reSource = reInput.value // 获取正则表达式文本框（id 为 reInput 的元素）输入的内容
+
+    if (reSource == '') { // 如果正则表达式文本框的内容为空，则什么也不做 （避免因为空输入而导致程序错误）
+      return
+    }
+    var flags = getFlags() // 处理选项（id 为 ignoreCase、global、multiline 的复选框）
+
+    try {
+      var re = new RegExp(reSource, flags + 'd') // 构造正则表达式（使用 new RegExp 构造函数）
+    } catch (e) {
+      reInputError.innerHTML = e // 如果构造正则表达式时发生错误，将错误信息输出在错误提示区域（id 为 reInputError 的元素）
+      return
+    }
+
+    var string = testStr.value // 获取文本输入框（id 为 testStr 的元素）输入的内容
+    var match
+    var html = ''
+    var lastLastIndex = 0
+
+    while (match = re.exec(string)) { // 使用 exec 方法在字符串中查找匹配项
+      html += string.slice(lastLastIndex, match.index) // 将上次匹配位置和当前匹配位置之间的文本添加到 html 变量中
+      if (match[0] == '') { // 如果匹配到的内容为空字符串，说明这是一个长度为 0 的匹配项
+        html += '<em></em>' // 将空匹配项用 em 标签包裹，并添加到 html 变量中
+      } else {
+        html += wrapOneMatch(match) // 将匹配项用 span 标签包裹，并添加到 html 变量中
+      }
+
+      lastLastIndex = re.lastIndex // 更新上次匹配位置
+      if (match[0] == '') { // 如果匹配到的内容为空字符串，需要手动将正则表达式的 lastIndex 属性加 1，以使 exec 方法跳过空匹配项
+        re.lastIndex++
+      }
+
+      if (!re.global) { // 如果正则表达式没有 global 标志，则退出循环
+        lastLastIndex = match.index + match[0].length // 更新最后一个匹配项的位置
+        break
+      }
+    }
+
+    html += string.slice(lastLastIndex) // 将最后一个匹配位置后面的文本添加到 html 变量中
+    res.innerHTML = html // 将处理后的 html 插入到结果显示区域（id 为 res 的元素）中
+
   }
 
 
+  // 将一个匹配及其内的每个捕获分组都用标签包起来以高亮
+  function wrapOneMatch(match) {
+    // 先把每个捕获分组的范围转换为相对于这次的匹配的范围
+    var indices = match.indices.map(([start, end]) => {
+      return [start - match.index, end - match.index] // 计算每个捕获分组的起始位置和结束位置相对于整个匹配项的起始位置的偏移
+    })
+
+    var fullMatch = match[0] // 获取整个匹配项的文本
+    var result = '' // 用于保存处理后的字符串
+    var prevEnd = 0 // 记录上一个捕获分组的结束位置
+
+    for (var i = 1; i < indices.length; i++) { // 遍历所有捕获分组，排除整个匹配项
+      var index = indices[i] // 当前捕获分组的范围
+      var [start, end] = index // 当前捕获分组的起始位置和结束位置
+      result += fullMatch.slice(prevEnd, start) // 将上一个捕获分组的结束位置和当前捕获分组的开始位置之间的文本加到 result 中
+      result += `<i data-group="${i}">` + fullMatch.slice(start, end) + '</i>' // 将当前捕获分组的文本用 i 标签包裹并添加分组信息，并加到 result 中
+      prevEnd = end // 更新上一个捕获分组的结束位置
+    }
+
+    result += fullMatch.slice(prevEnd) // 将最后一个捕获分组结束位置和整个匹配项结束位置之间的文本加到 result 中
+
+    return '<b>' + result + '</b>' // 将处理后的文本用 b 标签包裹，并返回
+  }
+
+  run()
 </script>
 
 </html>
