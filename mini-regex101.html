@@ -174,7 +174,7 @@
       var index = indices[i] // 当前捕获分组的范围
       var [start, end] = index // 当前捕获分组的起始位置和结束位置
       result += fullMatch.slice(prevEnd, start) // 将上一个捕获分组的结束位置和当前捕获分组的开始位置之间的文本加到 result 中
-      result += `<i data-group="${i}">` + fullMatch.slice(start, end) + '</i>' // 将当前捕获分组的文本用 i 标签包裹并添加分组信息，并加到 result 中
+      result += `<i data-group="${1}">` + fullMatch.slice(start, end) + '</i>' // 将当前捕获分组的文本用 i 标签包裹并添加分组信息，并加到 result 中
       prevEnd = end // 更新上一个捕获分组的结束位置
     }
 

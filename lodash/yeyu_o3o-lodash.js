@@ -440,6 +440,24 @@ var yeyu_o3o = {
       }
     }
     return res
+  },
+
+  groupBy: (collection, iteratee = identity) => {
+    iteratee = yeyu_o3o.transformIteratee(iteratee)
+
+    let res = {}
+
+    for (let value of collection) {
+      let key = iteratee(value)
+      if (!(key in res)) {//未完成
+        res.key = []
+        res.key.push(value)
+      } else {
+        res.key.push(value)
+      }
+    }
+
+    return res
   }
 
 }
