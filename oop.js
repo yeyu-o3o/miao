@@ -222,3 +222,156 @@ class MySet {
     return this.items.length
   }
 }
+
+
+String.prototype.mymatch
+
+String.prototype.mymatchAll
+
+String.prototype.myreplace
+
+String.prototype.myreplaceAll
+
+String.prototype.mysearch = target => {
+  if (typeof target == 'string') {
+    return this.indexOf(target)
+  } else {
+    if (this.exec(str)) {
+      return this.exec(str).index
+    } else {
+      return -1
+    }
+  }
+
+}
+
+RegExp.prototype.mytest = str => {
+  if (this.exec(str)) {
+    return true
+  } else {
+    return false
+  }
+}
+// 利用RegExp.prototype.exec实现以上所有函数
+// 调用方式跟自带的一样
+
+// String.prototype.myreplaceAll = function (re, replacer) {
+//   if (!re.global) {
+//     throw new TypeError('xxx')
+//   }
+//   return this.myreplace(re, replacer)
+// }
+
+// String.prototype.mysplit = function (re) {
+//   if (typeof re == 'string') {
+
+//   } else {
+//     var result = []
+//     // re.global = true // 正则的标记都是不能改的,创建的时候确定
+//     if (!re.global) {
+//       re = new RegExp(re.source, 'g' + re.flags      )
+//     }
+//     re.lastIndex = 0
+//     var match
+//     var lastLastIndex = 0
+
+//     while (match = re.exec(this)) {
+//       result.push(this.slice(lastLastIndex, match.index))
+//       result.push(...match.slice(1))
+//       lastLastIndex = re.lastIndex
+//     }
+//     result.push(this.slice(lastLastIndex))
+//     return result
+//   }
+// }
+
+
+// String.prototype.myreplace = function (regexp, replacer) {
+//   regexp.lastIndex = 0
+//   var result = ''
+//   var match
+//   var lastLastIndex = 0
+//   while (match = regexp.exec(this)) {
+//     result += this.slice(lastLastIndex, match.index)
+//     if (typeof replacer == 'function') {
+//       result += replacer(...match, match.index, match.input)
+//     } else {
+//       // 先将replacer里的$i换成match[i],把$&换成match[0],然后再拼到结果上去
+//       // foo$1_$2---   换成  `foo${match[1]}_${match[2]}---`
+//       var replacement = replacer.myreplace(/\$([1-9\&])/g, (_, idx) => {
+//         if (idx == '&') {
+//           return match[0]
+//         } else {
+//           return match[idx]
+//         }
+//       })
+//       result += replacement
+//     }
+//     lastLastIndex = regexp.lastIndex
+//     if (!regexp.global) {
+//       lastLastIndex = match.index + match[0].length
+//       break
+//     }
+//   }
+//   result += this.slice(lastLastIndex)
+//   return result
+// }
+
+// String.prototype.mymatchAll = function (re) {
+//   if (re instanceof RegExp) {
+//     if (!re.global) {
+//       throw new TypeError('String.prototype.matchAll called with a non-global RegExp argument')
+//     }
+//   }
+//   if (typeof re == 'string') {
+//     re = new RegExp(re, 'g')
+//   }
+//   re.lastIndex = 0
+//   var result = []
+//   var match
+//   while (match = re.exec(this)) {
+//     result.push(match)
+//   }
+//   return result
+// }
+
+// String.prototype.mymatch = function (re) {
+//   if (re.global) { // re有g标记
+//     re.lastIndex = 0 // 将其置0以保证匹配从头开始
+//     var result = []
+//     var match
+//     while (match = re.exec(this)) {
+//       result.push( match[0] )
+//     }
+//     return result
+//   } else {
+//     return re.exec(this)
+//   }
+// }
+
+// /**
+//  *
+//  * @param target {string|RegExp}
+//  * @returns {number}
+//  */
+// String.prototype.mysearch = function (target) {
+//   if (typeof target == 'string') {
+//     return this.indexOf(target)
+//   } else {
+//     // 如果target带有g标记且lastIndex属性不为0,会怎么样?
+//     var match = target.exec(this)
+//     if (match) {
+//       return match.index
+//     } else {
+//       return -1
+//     }
+//   }
+// }
+
+// RegExp.prototype.mytest = function(str) {
+//   if (this.exec(str)) {
+//     return true
+//   } else {
+//     return false
+//   }
+// }
