@@ -447,13 +447,13 @@ var yeyu_o3o = {
 
     let res = {}
 
-    for (let value of collection) {
-      let key = iteratee(value)
-      if (!(key in res)) {//未完成
-        res.key = []
-        res.key.push(value)
+    for (var i = 0; i < collection.length; i++) {
+      let key = iteratee(collection[i])
+      if (!(key in res)) {
+        res[key] = []
+        res[key].push(collection[i])
       } else {
-        res.key.push(value)
+        res[key].push(collection[i])
       }
     }
 
