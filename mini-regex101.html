@@ -74,16 +74,15 @@
 </head>
 
 <body>
-  正则表达式 <br><input type="text" id="reInput" value='(f)()((oo)(.))' onkeyup="run()">
-  <br>
+  正则表达式 <br>
+  <input type="text" id="reInput" value='(f)()((oo)(.))' onkeyup="run()"><br>
   <p id="reInputError"></p>
   <label><input onclick="run()" id="flagG" type="checkbox" checked>g</label>
   <label><input onclick="run()" id="flagI" type="checkbox">i</label>
   <label><input onclick="run()" id="flagM" type="checkbox">m</label>
   <label><input onclick="run()" id="flagS" type="checkbox">s</label>
   <label><input onclick="run()" id="flagU" type="checkbox">u</label>
-  <label><input onclick="run()" id="flagY" type="checkbox">y</label>
-  <br>
+  <label><input onclick="run()" id="flagY" type="checkbox">y</label><br>
   测试字符串 <br>
   <textarea name="" id="testStr" cols="30" rows="10" onkeyup="run()">foo barbaz baa foobaa foobaa</textarea>
   <pre id="res"></pre>
@@ -120,8 +119,8 @@
     if (reSource == '') { // 如果正则表达式文本框的内容为空，则什么也不做 （避免因为空输入而导致程序错误）
       return
     }
-    var flags = getFlags() // 处理选项（id 为 ignoreCase、global、multiline 的复选框）
 
+    var flags = getFlags() // 处理选项（id 为 ignoreCase、global、multiline 的复选框）
     try {
       var re = new RegExp(reSource, flags + 'd') // 构造正则表达式（使用 new RegExp 构造函数）
     } catch (e) {
@@ -174,7 +173,7 @@
       var index = indices[i] // 当前捕获分组的范围
       var [start, end] = index // 当前捕获分组的起始位置和结束位置
       result += fullMatch.slice(prevEnd, start) // 将上一个捕获分组的结束位置和当前捕获分组的开始位置之间的文本加到 result 中
-      result += `<i data-group="${1}">` + fullMatch.slice(start, end) + '</i>' // 将当前捕获分组的文本用 i 标签包裹并添加分组信息，并加到 result 中
+      result += `<i data-group="${i}">` + fullMatch.slice(start, end) + '</i>' // 将当前捕获分组的文本用 i 标签包裹并添加分组信息，并加到 result 中
       prevEnd = end // 更新上一个捕获分组的结束位置
     }
 
