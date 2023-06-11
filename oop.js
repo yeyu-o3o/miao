@@ -224,13 +224,94 @@ class MySet {
 }
 
 
-String.prototype.mymatch
 
-String.prototype.mymatchAll
 
-String.prototype.myreplace
+String.prototype.mymatchAll = re => {
+  if (re instanceof RegExp) {//如果是正则
+    if (!re.global) {
+      throw new TypeError('String.prototype.matchAll called with a non-global RegExp argument')
+    }
+  }
+  if (typeof re == 'string') {//如果是字符串，则构造一个正则
+    re = new RegExp(re, 'g')
+  }
+  re.lastIndex = 0
+  var result = []
+  var match
+  while (match = re.exec(this)) {
+    result.push(match)
+  }
+  return result
+}
 
-String.prototype.myreplaceAll
+String.prototype.mymatch = re => {
+  if (re.global) {
+    re.lastIndex = 0
+    var result = []
+    while (re.exec(this)) {
+      result.push(re.exec(this)[0])
+    }
+    return result
+  } else {
+    return re.exec(this)
+  }
+}
+
+String.prototype.myreplaceAll = function (re, replacer) {
+  if (!re.global) {
+    throw new TypeError('String.prototype.matchAll called with a non-global RegExp argument')
+  }
+  return this.myreplace(re, replacer)
+}
+
+String.prototype.myreplace = function (regexp, replacer) {
+  // 将正则表达式的lastIndex属性设置为0
+  regexp.lastIndex = 0
+
+  // 初始化变量
+  var result = ''
+  var match
+  var lastLastIndex = 0
+
+  // 循环查找所有匹配项
+  while (match = regexp.exec(this)) {
+    // 将源字符串的前一个匹配项之后的部分添加到结果中
+    result += this.slice(lastLastIndex, match.index)
+
+    if (typeof replacer == 'function') {
+      // 如果replacer是一个函数，则调用该函数
+      result += replacer(...match, match.index, match.input)//详情见placement如果replacer是函数时的参数列表+
+    } else {
+      // 如果replacer不是一个函数，则替换所有的特殊替换模式（比如$1、$2、$&等等）
+      var replacement = replacer.myreplace(/\$([1-9\&])/g, (_, idx) => {
+        if (idx == '&') {
+          return match[0]
+        } else {
+          return match[parseInt(idx)]
+        }
+      })
+
+      // 将替换后的部分添加到结果中
+      result += replacement
+    }
+
+    // 更新lastLastIndex变量
+    lastLastIndex = regexp.lastIndex
+
+    // 如果正则表达式不是全局的，则直接跳出循环，只查找第一个匹配项
+    if (!regexp.global) {
+      lastLastIndex = match.index + match[0].length
+      break
+    }
+  }
+
+  // 将源字符串的剩余部分添加到结果中
+  result += this.slice(lastLastIndex)
+
+  // 返回结果字符串
+  return result
+}
+
 
 String.prototype.mysearch = target => {
   if (typeof target == 'string') {
