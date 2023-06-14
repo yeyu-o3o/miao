@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      box-sizing: border-box;
+      background-color: rgba(0, 0, 0, 0.08);
+      box-shadow: inset 0 0 1px red;
+    }
+
+    #solar-system {
+      width: 600px;
+      height: 600px;
+      margin: 0 auto;
+      position: relative;
+
+      >#sun {
+        position: absolute;
+        top: 260px;
+        left: 260px;
+        width: 0;
+        height: 0;
+        border: 40px solid yellow;
+        border-radius: 40px;
+
+        >#earth {
+          position: absolute;
+          left: 200px;
+          width: 0;
+          height: 0;
+          border: 20px solid blue;
+          border-radius: 20px;
+
+          >#moon {
+            position: absolute;
+            left: 40px;
+            width: 0;
+            height: 0;
+            border: 6px solid aliceblue;
+            border-radius: 6px;
+          }
+        }
+      }
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <div id="wrap">
+    <div id="solar-system">
+      <div id="sun">
+        <div id="earth">
+          <div id="moon"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script>
+  let wrap = document.getElementById('wrap')
+  wrap.style.width = '100%'
+  let solar = document.getElementById('solar-system')
+  let sun = document.getElementById('sun')
+  let earth = document.getElementById('earth')
+
+  let angle = 0
+  let lastTime = null
+
+  // function animate(time) {
+  //   // 角度随时间变化
+  //   time = Date.now()
+  //   if (lastTime != null) {
+  //     angle += (time - lastTime) * 0.001
+  //   }
+  //   lastTime = time
+
+  //   // 将角度转化为定位的数值
+  //   earth.style.top = (Math.sin(angle) * 200) + "px"
+  //   earth.style.left = (Math.cos(angle) * 200) + "px"
+
+  //   moon.style.top = (Math.sin(angle) * 40) + "px"
+  //   moon.style.left = (Math.cos(angle) * 40) + "px"
+
+  //   // 定时器
+  //   setTimeout(animate, 16)
+  // }
+
+  function animate2(planet, radius, radian = 0.001) {
+    debugger
+    // 角度随时间变化
+    var time = Date.now()
+    if (lastTime != null) {
+      angle += (time - lastTime) * radian
+    }
+    lastTime = time
+
+    // 将角度转化为定位的数值
+    planet.style.top = (Math.sin(angle) * radius) + "px"
+    planet.style.left = (Math.cos(angle) * radius) + "px"
+
+    // 定时器
+    setTimeout(animate2, 16, planet, radius, radian)
+  }
+
+  setTimeout(animate2, 16, earth, 200)
+  setTimeout(animate2, 16, moon, 40)
+
+</script>
+
+</html>
