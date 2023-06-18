@@ -12,6 +12,8 @@
 
     html {
       background-color: black;
+      overflow-y: scroll;
+      /* 直接加上滚动条 */
     }
 
     body {
@@ -22,7 +24,6 @@
       display: flex;
       gap: 10px;
       align-items: flex-start;
-      width: 600px;
       margin: auto;
     }
 
@@ -37,6 +38,9 @@
       box-shadow: 0 0 20px #999;
       outline: 1px solid white;
       outline-offset: 1px;
+      position: relative;
+      transition: 0.3s;
+      cursor: pointer;
     }
   </style>
 </head>
@@ -373,45 +377,152 @@
         "height": 1170
       }
     ]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+    cats = [...cats, ...cats]
+
+    let section = document.querySelector('section')
 
     // 第一版
-    function run() {
-      // 计算能放的列数
-      let columns = Math.floor((window.innerWidth - 120) / 180)
-      // 计算包裹列数的section的宽度
-      let section = document.querySelector('section')
-      section.style.width = columns * 180 + (columns - 1) * 10 + 'px'
-      section.innerHTML = '' //每次调用都清空上一次的内容重新加载
+    // function run() {
+    //   // 计算能放的列数
+    //   let columns = Math.floor((window.innerWidth - 120) / 180)
+    //   // 计算包裹列数的section的宽度
+    //   section.style.width = columns * 180 + (columns - 1) * 10 + 'px'
+    //   section.innerHTML = '' //每次调用都清空上一次的内容重新加载
 
-      // 遍历列数创建div
+    //   // 遍历列数创建div
+    //   for (let i = 0; i < columns; i++) {
+    //     section.append(document.createElement('div'))
+    //   }
+
+    //   // 拿到多个div组成的数组
+    //   let divs = [...section.querySelectorAll('div')]
+    //   // 遍历图片数组cats往最短的div里放图片
+    //   for (let cat of cats) {
+    //     let div = divs.reduce((min, div) => {
+    //       if (min.offsetHeight < div.offsetHeight) {
+    //         return min
+    //       } else {
+    //         return div
+    //       }
+    //     })
+
+    //     let img = document.createElement('img')
+    //     img.src = cat.fullUrl
+    //     img.width = div.offsetWidth
+    //     img.height = div.offsetWidth * cat.height / cat.width
+
+    //     div.append(img)
+    //   }
+    // }
+    // run()
+    // window.onresize = run
+
+    // 第二版
+    // 只通过宽度的改变来重新绘制，所以要记录当前宽度和上次的宽度
+    let preWidth = 0
+    function run2() {
+      //根据宽度的改变来重绘
+      if (window.innerWidth == preWidth) {
+        return
+      } else {
+        preWidth = window.innerWidth
+      }
+      // 前面是一样的处理，计算每列的宽度
+      let columns = Math.floor(window.innerWidth / 180)
+      section.innerHTML = ''
+
+      // 循环创建div
       for (let i = 0; i < columns; i++) {
         section.append(document.createElement('div'))
       }
-
-      // 拿到多个div组成的数组
+      // 获取到div的集合数组
       let divs = [...section.querySelectorAll('div')]
-      // 遍历图片数组cats往最短的div里放图片
-      for (let cat of cats) {
-        let div = divs.reduce((min, div) => {
-          if (min.offsetHeight < div.offsetHeight) {
-            return min
-          } else {
-            return div
-          }
-        })
 
+      // 这里不一样了
+      // 获取列的宽度
+      let columnWidth = divs[0].offsetWidth
+      // 记录每个div的高度,初始值为0
+      let divHeights = Array(columns).fill(0)
+      // 给每个列创建包含图片的盒子
+      let divImgs = Array(columns).fill(0).map(it => [])//不能直接创建fill([]),这样的话会创建出空的empty
+
+      // 遍历往最短的div里赛图片
+      for (let cat of cats) {
+        // 拿到最短的div，塞图片
+        let minDivHeight = Math.min(...divHeights) //这是高度数组里最小值
+        let minIdx = divHeights.indexOf(minDivHeight) //这是最小值对应的盒子的索引
+
+        let div = divs[minIdx] //拿到了最短的盒子
+
+        // 设置图片的几个设置
         let img = document.createElement('img')
         img.src = cat.fullUrl
-        img.width = div.offsetWidth
-        img.height = div.offsetWidth * cat.height / cat.width
+        img.width = columnWidth
+        img.height = columnWidth * cat.height / cat.width // 这是比例
 
-        div.append(img)
+        // 最短的盒子加上了图片和边距的高度
+        divHeights[minIdx] += img.height + 10
+
+        // 图片放最短的盒子里
+        divImgs[minIdx].push(img)
       }
-    }
-    run()
-    window.onresize = run
 
-    // 第二版
+      divImgs.forEach((imgs, idx) => {
+        divs[idx].append(...imgs)
+      })
+    }
+
+    run2()
+
+    window.onresize = run2
+
+
+
+
+
+    var z = 5
+    // 给父元素绑定点击事件，判断点击事件的目标为img
+    section.addEventListener('click', function (e) {
+      if (e.target.matches('section > div > img')) {
+        var img = e.target
+
+        // 如果没放大，那么元素的transform为空
+        if (img.style.transform == '') {
+          // 获取元素的大小以及相对于视口（viewport）的位置
+          var box = img.getBoundingClientRect()
+
+          var cx = box.left + box.width / 2
+          var cy = box.top + box.height / 2
+          var vx = window.innerWidth / 2
+          var vy = window.innerHeight / 2
+
+          var movex = vx - cx
+          var movey = vy - cy
+
+          var zoomx = window.innerWidth / box.width
+          var zoomy = window.innerHeight / box.height
+
+          img.style.zIndex = z++
+          img.style.transform = `translate(${movex}px, ${movey}px) scale(${Math.min(zoomx, zoomy)})`
+          img.style.boxShadow = '0 0 0 10000px black'
+          document.documentElement.style.overflowY = 'hidden'
+          document.documentElement.style.paddingRight = '14px'
+        } else {
+          img.style.transform = ''
+          img.style.boxShadow = ''
+          document.documentElement.style.overflowY = ''
+          document.documentElement.style.paddingRight = ''
+        }
+
+      }
+    })
 
   </script>
 </body>
