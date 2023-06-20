@@ -458,6 +458,37 @@ var yeyu_o3o = {
     }
 
     return res
+  },
+
+  keyBy: (collection, iteratee = identity) => {
+    iteratee = yeyu_o3o.transformIteratee(iteratee)
+
+    let res = {}
+
+    for (let value of collection) {
+      let key = iteratee(value)
+      res[key] = value
+    }
+
+    return res
+  },
+
+  forEach: (collection, iteratee = identity) => {
+    iteratee = yeyu_o3o.transformIteratee(iteratee)
+
+    for (let key in collection) {
+      collection[key] = iteratee(collection[key])
+    }
+  },
+
+  map: (collection, iteratee = identity) => {
+    iteratee = yeyu_o3o.transformIteratee(iteratee)
+
+    let arr = []
+    for (let value of collection) {
+      arr.push(iteratee(value))
+    }
+    return arr
   }
 
 }
