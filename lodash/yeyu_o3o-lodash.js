@@ -485,10 +485,23 @@ var yeyu_o3o = {
     iteratee = yeyu_o3o.transformIteratee(iteratee)
 
     let arr = []
-    for (let value of collection) {
-      arr.push(iteratee(value))
+    for (let key in collection) {
+      arr.push(iteratee(collection[key]))
     }
     return arr
+  },
+
+  filter: (collection, predicate = identity) => {
+    // 给的predicate如果少于obj且满足obj就可以返回真，此处是不能使用这个函数的
+    // predicate = yeyu_o3o.transformPredicate(predicate)
+
+    let res = []
+    for (let key in collection) {
+      if (predicate(collection[key]) === true) {
+        res.push(collection[key])
+      }
+    }
+    return res
   }
 
 }
