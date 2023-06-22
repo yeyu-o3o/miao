@@ -495,6 +495,42 @@ var yeyu_o3o = {
     // 给的predicate如果少于obj且满足obj就可以返回真，此处是不能使用这个函数的
     // predicate = yeyu_o3o.transformPredicate(predicate)
 
+    var transformPredicate2 = predicate => {
+      if (typeof (predicate) == 'function') {
+        return predicate
+      }
+      // 如果predicate是数组
+      if (Array.isArray(predicate)) {
+        var key = predicate[0]
+        var value = predicate[1]
+        return obj => obj[key] == value
+      }
+      // 如果predicate是对象
+      if (typeof (predicate) == 'object') {
+        // 目标是返回一个函数
+        return obj => {
+          // 判断predicate是否在obj里面
+          for (let key in predicate) {
+            var val = predicate[key]
+            if (!(key in obj)) {
+              return false
+            } else {
+              if (val !== obj[key]) {
+                return false
+              }
+            }
+          }
+          return true
+        }
+      }
+      // 如果predicate是字符串
+      if (typeof (predicate) == 'string') {
+        return obj => obj[predicate]
+      }
+    }
+
+    predicate = transformPredicate2(predicate)
+
     let res = []
     for (let key in collection) {
       if (predicate(collection[key]) === true) {
