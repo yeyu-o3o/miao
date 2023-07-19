@@ -538,7 +538,22 @@ var yeyu_o3o = {
       }
     }
     return res
-  }
+  },
+
+  // memorize: func => { //最初版本 单个参数，多个参数要用一个函数 (m,n) => `${m}-${n}` 组合来记录这个key
+  //   let cache = new Map()
+  //   return function (arg) {
+  //     if (cache.has(arg)) {
+  //       return cache.get(arg)
+  //     } else {
+  //       let res = func(arg)
+  //       cache.set(arg, res)
+  //       return res
+  //     }
+  //   }
+  // },
+
+
 
 }
 
