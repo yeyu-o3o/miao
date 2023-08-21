@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .completed {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <h1>todos</h1>
+
+    <div>
+      <input type="checkbox" @click="quanxuan()" :checked="todos.length && todos.every(it => it.done == true)">
+      <input type="text" placeholder="What nees to be done?" @keydown.enter="addTodo($event)">
+    </div>
+
+    <ul>
+      <li v-for="(todo, idx) of alter(todos)">
+        <input type="checkbox" :checked="todo.done" @change="changeState(idx)">
+
+        <span v-show="todo.editState < 0" @dblclick="edit(idx)">{{todo.name}}</span>
+        <input v-show="todo.editState > 0" type="text" :value="todo.name" :id="'input'+idx"
+          @keydown.enter="todo.name=$event.target.value.trim();todo.editState = -1"
+          @keydown.escape="todo.editState = -1" @blur="todo.name=$event.target.value.trim();todo.editState = -1">
+
+        <button @click="deleteTodo(idx)">&times;</button>
+      </li>
+    </ul>
+
+    <div v-show="todos.length">
+      <div class="count">
+        <em>{{todos.filter(it => it.done == false).length}}</em> 个事项未完成
+      </div>
+
+      <div class="alter">
+        <label><input type="radio" name="alter" @click="visibleTodos = $event.target.value" value="all">所有</label>
+        <label><input type="radio" name="alter" @click="visibleTodos = $event.target.value" value="active">未完成</label>
+        <label><input type="radio" name="alter" @click="visibleTodos = $event.target.value"
+            value="completed">已完成</label>
+      </div>
+
+      <button @click="clearTodo()">清除已完成</button>
+
+    </div>
+
+  </div>
+
+</body>
+<script src="vue-2.7.14.js"></script>
+<script>
+  let app = new Vue({
+    el: '.wrap',
+
+    data: {
+      todos: JSON.parse(localStorage.getItem('todos')) ?? [
+        {
+          name: '1',
+          done: false,
+          editState: -1,
+        },
+        {
+          name: '2',
+          done: true,
+          editState: -1,
+        },
+        {
+          name: '3',
+          done: false,
+          editState: -1,
+        },
+      ],
+      visibleTodos: 'all',
+    },
+
+    methods: {
+      addTodo(e) {
+
+        let value = e.target.value.trim()
+        if (value) {
+          this.todos.push({
+            name: value,
+            done: false,
+            editState: -1,
+          })
+        }
+        e.target.value = ''
+      },
+
+      alter() {
+        if (this.visibleTodos == 'active') {
+          return this.todos.filter(it => it.done == false)
+        } else if (this.visibleTodos == 'completed') {
+          return this.todos.filter(it => it.done == true)
+        } else {
+          return this.todos
+        }
+      },
+
+      deleteTodo(idx) {
+        this.todos.splice(idx, 1)
+      },
+
+      changeState(idx) {
+        this.todos[idx].done = !this.todos[idx].done
+      },
+
+      clearTodo() {
+        this.todos = this.todos.filter(it => it.done == false)
+      },
+
+      quanxuan() {
+        if (this.todos.every(it => it.done == true)) {
+          this.todos.forEach(it => it.done = false)
+        } else {
+          this.todos.forEach(it => it.done = true)
+        }
+      },
+
+      edit(idx) {
+        this.todos[idx].editState = 1
+        let input = document.querySelector('#input' + idx)
+        setTimeout(() => {
+          input.focus()
+        }, 1)
+      }
+    },
+
+    watch: {
+      todos: {
+        deep: true,
+        handler: function () {
+          localStorage.setItem('todos', JSON.stringify(this.todos))
+        }
+      }
+    },
+  })
+</script>
+
+</html>

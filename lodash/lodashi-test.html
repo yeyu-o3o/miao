@@ -1,1 +1,17 @@
 <script src="yeyu_o3o-lodash.js"></script>
+
+function download(url, callback) {
+let xhr = new XMLHttpRequest()
+xhr.open('GET', url)
+xhr.addEvenListener('load', () => {
+callback(xhr.responseText)
+})
+xhr.send()
+}
+
+function download(url, callback) {
+let xhr = new XMLHttpRequest()
+xhr.open('GET', url)
+xhr.onload = callback
+xhr.send()
+}
