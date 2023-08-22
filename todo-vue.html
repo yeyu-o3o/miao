@@ -7,7 +7,8 @@
   <title>Document</title>
   <style>
     .completed {
-      display: none;
+      text-decoration: line-through;
+      opacity: 0.5;
     }
   </style>
 </head>
@@ -23,10 +24,11 @@
     </div>
 
     <ul>
-      <li v-for="(todo, idx) of alter(todos)">
+      <li v-for="(todo, idx) of alter(todos)" :class="todo.done==true?'completed':''">
         <input type="checkbox" :checked="todo.done" @change="changeState(idx)">
 
         <span v-show="todo.editState < 0" @dblclick="edit(idx)">{{todo.name}}</span>
+
         <input v-show="todo.editState > 0" type="text" :value="todo.name" :id="'input'+idx"
           @keydown.enter="todo.name=$event.target.value.trim();todo.editState = -1"
           @keydown.escape="todo.editState = -1" @blur="todo.name=$event.target.value.trim();todo.editState = -1">
@@ -82,7 +84,6 @@
 
     methods: {
       addTodo(e) {
-
         let value = e.target.value.trim()
         if (value) {
           this.todos.push({
@@ -130,7 +131,7 @@
         setTimeout(() => {
           input.focus()
         }, 1)
-      }
+      },
     },
 
     watch: {
