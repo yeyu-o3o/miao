@@ -49,7 +49,7 @@
             value="completed">已完成</label>
       </div>
 
-      <button @click="clearTodo()">清除已完成</button>
+      <button @click="clearTodo()" v-show="!todos.every(it => it.done==false)">清除已完成</button>
 
     </div>
 
